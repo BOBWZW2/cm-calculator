@@ -9,1435 +9,303 @@
         color-scheme: light;
         --bg: #edf4f3;
         --ink: #12343b;
-        --muted: #5c777d;
-        --panel: rgba(255, 255, 255, 0.86);
-        --panel-strong: #ffffff;
-        --line: rgba(18, 52, 59, 0.1);
+        --muted: #607a80;
+        --line: rgba(18, 52, 59, 0.12);
+        --panel: rgba(255, 255, 255, 0.9);
         --teal: #147f80;
         --teal-deep: #0b5661;
         --orange: #f18f4b;
-        --orange-deep: #df5b37;
-        --good: #0f8d62;
         --bad: #b43a2b;
         --shadow: 0 14px 34px rgba(13, 52, 58, 0.08);
         font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
+      * { box-sizing: border-box; }
       body {
         margin: 0;
         min-height: 100vh;
-        background:
-          radial-gradient(circle at 18% 0%, rgba(241, 143, 75, 0.13), transparent 28%),
-          linear-gradient(180deg, #f8fbfb 0%, var(--bg) 100%);
+        background: linear-gradient(180deg, #f8fbfb 0%, var(--bg) 100%);
         color: var(--ink);
       }
-
-      button,
-      input,
-      select {
-        font: inherit;
-      }
-
-      button {
-        border: 0;
-        cursor: pointer;
-      }
-
-      .app-shell {
-        max-width: 1520px;
-        margin: 0 auto;
-        padding: 20px 20px 36px;
-      }
-
-      .hero-panel {
+      button, input, select { font: inherit; }
+      button { border: 0; cursor: pointer; }
+      .app-shell { max-width: 1480px; margin: 0 auto; padding: 20px 18px 36px; }
+      .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
-        gap: 18px;
+        grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.9fr);
+        gap: 16px;
         padding: 22px;
-        border-radius: 22px;
+        border-radius: 18px;
         color: #f7fbfb;
-        background:
-          radial-gradient(circle at top right, rgba(255, 180, 95, 0.25), transparent 34%),
-          linear-gradient(135deg, rgba(9, 66, 82, 0.98), rgba(17, 111, 122, 0.92));
-        box-shadow: 0 16px 40px rgba(9, 55, 62, 0.18);
+        background: linear-gradient(135deg, rgba(9, 66, 82, 0.98), rgba(17, 111, 122, 0.94));
+        box-shadow: 0 16px 36px rgba(9, 55, 62, 0.18);
       }
-
-      .eyebrow {
-        margin: 0 0 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 0.72rem;
-        color: rgba(247, 251, 251, 0.75);
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(1.55rem, 2.8vw, 2.2rem);
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      .hero-copy {
-        margin: 10px 0 0;
-        max-width: 76ch;
-        color: rgba(247, 251, 251, 0.86);
-        line-height: 1.45;
-        font-size: 0.92rem;
-      }
-
-      .hero-stats,
-      .kpi-grid,
-      .maintenance-grid,
-      .detail-columns,
-      .simulation-stack {
-        display: grid;
-        gap: 14px;
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-content: start;
-      }
-
-      .stat-card,
-      .panel,
-      .kpi,
-      .banner,
-      .route-pill {
+      .eyebrow { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; opacity: 0.76; }
+      h1 { margin: 0; font-size: clamp(1.5rem, 2.5vw, 2.15rem); line-height: 1; letter-spacing: 0; }
+      .hero-copy { margin: 10px 0 0; max-width: 78ch; color: rgba(247, 251, 251, 0.86); line-height: 1.45; font-size: 0.92rem; }
+      .hero-stats, .tabs, .kpi-grid, .detail-grid, .maintenance-grid, .route-form { display: grid; gap: 12px; }
+      .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stat-card, .panel, .kpi, .banner {
         border: 1px solid var(--line);
         background: var(--panel);
-        backdrop-filter: blur(16px);
-      }
-
-      .stat-card {
-        display: grid;
-        gap: 6px;
-        border-radius: 16px;
-        padding: 14px 16px;
-      }
-
-      .stat-card span,
-      .kpi span {
-        font-size: 0.74rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #55767c;
-      }
-
-      .hero-panel .stat-card {
-        color: #f7fbfb;
-        background: rgba(255, 255, 255, 0.13);
-        border-color: rgba(255, 255, 255, 0.17);
-      }
-
-      .hero-panel .stat-card span {
-        color: rgba(247, 251, 251, 0.74);
-      }
-
-      .stat-card strong {
-        font-size: 1rem;
-      }
-
-      .input-status {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        align-items: center;
-        margin: 14px 0;
-        padding: 12px 14px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.76);
-        border: 1px solid rgba(18, 52, 59, 0.08);
         box-shadow: var(--shadow);
       }
-
-      .input-status strong {
-        display: block;
-        font-size: 0.86rem;
-      }
-
-      .input-status small {
-        display: block;
-        margin-top: 4px;
-        color: var(--muted);
-        line-height: 1.35;
-      }
-
-      .tab-strip {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 10px;
-        margin: 16px 0;
-      }
-
-      .tab-button {
-        min-height: 68px;
-        border-radius: 14px;
-        padding: 12px 14px;
-        text-align: left;
-        background: rgba(255, 255, 255, 0.76);
-        color: var(--ink);
-        box-shadow: 0 12px 28px rgba(20, 56, 61, 0.08);
-        transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
-      }
-
-      .tab-button:hover,
-      .primary-button:hover,
-      .ghost-button:hover,
-      .danger-button:hover {
-        transform: translateY(-1px);
-      }
-
-      .tab-button.active {
-        color: #fff8f2;
-        background: linear-gradient(135deg, var(--orange), var(--orange-deep));
-        box-shadow: 0 18px 36px rgba(223, 91, 55, 0.22);
-      }
-
-      .tab-button span,
-      .tab-button small {
-        display: block;
-      }
-
-      .tab-button span {
-        font-size: 0.86rem;
-        font-weight: 800;
-        margin-bottom: 4px;
-      }
-
-      .tab-button small {
-        line-height: 1.35;
-        font-size: 0.74rem;
-        opacity: 0.92;
-      }
-
-      .panel {
-        border-radius: 18px;
-        padding: 16px;
-        box-shadow: var(--shadow);
-      }
-
-      .panel-header,
-      .detail-header,
-      .section-head,
-      .actions,
-      .inline-tools,
-      .result-sticky-head {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-
-      .panel-header,
-      .section-head,
-      .result-sticky-head {
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 12px;
-      }
-
-      .panel-header h2,
-      .detail-header h3 {
-        margin: 0;
-        color: var(--ink);
-        font-size: 0.96rem;
-      }
-
-      .panel-header p,
-      .section-head p {
-        margin: 4px 0 0;
-        max-width: 68ch;
-        color: var(--muted);
-        line-height: 1.45;
-        font-size: 0.8rem;
-      }
-
-      .query-inline {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        gap: 9px;
-        align-items: end;
-      }
-
-      .compact-field,
-      .form-grid label {
-        display: grid;
-        gap: 8px;
-        min-width: 0;
-      }
-
-      .compact-field.short {
-        grid-column: span 2;
-      }
-
-      .compact-field.medium {
-        grid-column: span 3;
-      }
-
-      .compact-field.wide,
-      .query-actions {
-        grid-column: 1 / -1;
-      }
-
-      .compact-field span,
-      .form-grid span {
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #35545a;
-      }
-
-      input,
-      select {
-        width: 100%;
-        min-height: 38px;
-        border: 1px solid rgba(31, 83, 90, 0.18);
-        border-radius: 10px;
-        padding: 9px 11px;
-        background: rgba(255, 255, 255, 0.94);
-        color: var(--ink);
-        font-size: 0.84rem;
-      }
-
-      input:focus,
-      select:focus {
-        outline: none;
-        border-color: var(--teal);
-        box-shadow: 0 0 0 3px rgba(23, 127, 130, 0.15);
-      }
-
-      .query-actions,
-      .actions,
-      .inline-tools {
-        flex-wrap: wrap;
-      }
-
-      .query-actions {
-        justify-content: flex-end;
-      }
-
-      .primary-button,
-      .ghost-button,
-      .danger-button {
-        border-radius: 10px;
-        padding: 9px 13px;
-        transition: transform 120ms ease, opacity 120ms ease;
-        font-size: 0.82rem;
-        white-space: nowrap;
-      }
-
-      .primary-button {
-        color: #f7ffff;
-        background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-      }
-
-      .ghost-button {
-        color: var(--ink);
-        background: rgba(18, 52, 59, 0.08);
-      }
-
-      .danger-button {
-        color: var(--bad);
-        background: rgba(180, 58, 43, 0.12);
-      }
-
-      .kpi-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        margin-bottom: 14px;
-      }
-
-      .kpi {
-        display: grid;
-        gap: 6px;
-        border-radius: 14px;
-        padding: 12px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(240, 247, 246, 0.84));
-      }
-
-      .kpi strong {
-        font-size: 1.02rem;
-      }
-
-      .kpi small {
-        color: #66848a;
-        font-size: 0.73rem;
-      }
-
-      .cm-kpi {
-        color: #eef7f8;
-        border-color: rgba(255, 255, 255, 0.18);
-        background: linear-gradient(180deg, rgba(54, 77, 87, 0.98), rgba(34, 55, 63, 0.98));
-      }
-
-      .cm-kpi span,
-      .cm-kpi small {
-        color: #dbe9ec;
-      }
-
-      .cm-kpi strong.positive {
-        color: #35e28d;
-      }
-
-      .cm-kpi strong.negative {
-        color: #ff6b7b;
-      }
-
-      .result-sticky {
-        position: sticky;
-        top: 10px;
-        z-index: 10;
-        margin-bottom: 14px;
-        padding: 12px;
-        border-radius: 18px;
-        border: 1px solid rgba(119, 206, 210, 0.18);
-        background:
-          radial-gradient(circle at top right, rgba(67, 193, 201, 0.2), transparent 34%),
-          linear-gradient(135deg, rgba(11, 35, 41, 0.98), rgba(15, 72, 81, 0.97));
-        box-shadow: 0 16px 34px rgba(7, 28, 33, 0.22);
-      }
-
-      .result-sticky .kpi-grid {
-        margin-bottom: 0;
-      }
-
-      .result-sticky .kpi {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 248, 248, 0.96));
-      }
-
-      .result-sticky .cm-kpi {
-        background: linear-gradient(180deg, rgba(101, 119, 128, 0.98), rgba(67, 84, 92, 0.98));
-      }
-
-      .result-sticky-route span {
-        display: block;
-        font-size: 0.72rem;
-        font-weight: 800;
-        color: rgba(148, 225, 230, 0.82);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-
-      .result-sticky-route strong {
-        display: block;
-        margin-top: 4px;
-        color: #f4fbfb;
-        font-size: 0.86rem;
-      }
-
-      .result-sticky-head small {
-        color: rgba(229, 245, 247, 0.82);
-      }
-
-      .detail-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        align-items: start;
-      }
-
-      .detail-panel {
-        display: grid;
-        gap: 8px;
-        align-content: start;
-        border: 1px solid rgba(19, 54, 61, 0.08);
-        border-radius: 16px;
-        padding: 14px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 250, 249, 0.86));
-      }
-
-      .detail-header {
-        justify-content: space-between;
-      }
-
-      .table-shell {
-        overflow: auto;
-        border-radius: 14px;
-        border: 1px solid rgba(19, 54, 61, 0.08);
-        background: rgba(255, 255, 255, 0.8);
-      }
-
-      .table-shell.tall {
-        max-height: 720px;
-      }
-
-      table {
-        width: 100%;
-        min-width: 680px;
-        border-collapse: collapse;
-      }
-
-      thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background: #f2f7f6;
-        text-align: left;
-        font-size: 0.68rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: #57757b;
-      }
-
-      th,
-      td {
-        padding: 8px 10px;
-        border-bottom: 1px solid rgba(19, 54, 61, 0.08);
-        vertical-align: top;
-        font-size: 0.8rem;
-      }
-
-      tbody tr[data-row] {
-        cursor: pointer;
-      }
-
-      tbody tr[data-row]:hover {
-        background: rgba(20, 127, 128, 0.05);
-      }
-
-      .source-cell {
-        display: grid;
-        gap: 4px;
-        min-width: 128px;
-      }
-
-      .source-cell small {
-        color: #69858a;
-        font-size: 0.7rem;
-        line-height: 1.35;
-      }
-
-      .source-badge {
-        width: fit-content;
-        border-radius: 999px;
-        padding: 3px 8px;
-        font-size: 0.68rem;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-      }
-
-      .source-badge.manual {
-        color: var(--teal-deep);
-        background: rgba(20, 127, 128, 0.14);
-      }
-
-      .source-badge.excel {
-        color: #35545a;
-        background: rgba(88, 116, 121, 0.12);
-      }
-
-      .form-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .maintenance-grid {
-        grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.45fr);
-      }
-
-      .banner {
-        display: none;
-        border-radius: 14px;
-        padding: 10px 14px;
-        margin-bottom: 14px;
-        color: var(--teal-deep);
-        background: rgba(230, 247, 247, 0.96);
-      }
-
-      .banner.show {
-        display: block;
-      }
-
-      .empty-state {
-        min-height: 220px;
-        display: grid;
-        place-items: center;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      .hidden {
-        display: none !important;
-      }
-
-      @media (max-width: 1180px) {
-        .hero-panel,
-        .maintenance-grid,
-        .detail-columns,
-        .kpi-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 860px) {
-        .app-shell {
-          padding: 16px 14px 30px;
-        }
-
-        .hero-panel,
-        .panel {
-          border-radius: 20px;
-          padding: 18px;
-        }
-
-        .hero-stats,
-        .form-grid,
-        .query-inline {
-          grid-template-columns: 1fr;
-        }
-
-        .compact-field.short,
-        .compact-field.medium,
-        .compact-field.wide,
-        .query-actions {
-          grid-column: auto;
-        }
-
-        .panel-header,
-        .detail-header,
-        .section-head,
-        .actions,
-        .inline-tools,
-        .result-sticky-head,
-        .input-status {
-          flex-direction: column;
-          align-items: stretch;
-        }
+      .stat-card { display: grid; gap: 5px; border-radius: 14px; padding: 13px 15px; color: #f7fbfb; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.18); }
+      .stat-card span, .kpi span { color: var(--muted); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+      .stat-card span { color: rgba(247,251,251,0.72); }
+      .stat-card strong { font-size: 1rem; }
+      .input-status { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin: 14px 0; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,0.82); border: 1px solid var(--line); box-shadow: var(--shadow); }
+      .input-status strong { display: block; font-size: 0.86rem; }
+      .input-status small { color: var(--muted); line-height: 1.35; }
+      .tabs { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin: 16px 0; }
+      .tab { min-height: 58px; border-radius: 12px; padding: 11px 13px; text-align: left; color: var(--ink); background: rgba(255,255,255,0.78); box-shadow: 0 10px 24px rgba(20,56,61,0.07); }
+      .tab.active { color: #fff8f2; background: linear-gradient(135deg, var(--orange), #df5b37); box-shadow: 0 16px 30px rgba(223,91,55,0.2); }
+      .tab span, .tab small { display: block; }
+      .tab span { font-size: 0.85rem; font-weight: 800; }
+      .tab small { margin-top: 4px; line-height: 1.35; font-size: 0.72rem; opacity: 0.92; }
+      .panel { border-radius: 16px; padding: 16px; }
+      .panel-head, .section-head, .detail-head, .actions, .inline-tools { display: flex; gap: 10px; align-items: center; }
+      .panel-head, .section-head { justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+      h2, h3 { margin: 0; font-size: 0.98rem; }
+      .panel-head p, .section-head p { margin: 4px 0 0; color: var(--muted); line-height: 1.45; font-size: 0.8rem; }
+      .route-form { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; }
+      label { display: grid; gap: 7px; min-width: 0; }
+      label span { color: #35545a; font-size: 0.72rem; font-weight: 700; }
+      input, select { width: 100%; min-height: 38px; border: 1px solid rgba(31,83,90,0.18); border-radius: 9px; padding: 8px 10px; background: rgba(255,255,255,0.95); color: var(--ink); font-size: 0.83rem; }
+      input:focus, select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(20,127,128,0.14); }
+      .short { grid-column: span 2; }
+      .medium { grid-column: span 3; }
+      .wide, .route-actions { grid-column: 1 / -1; }
+      .actions, .inline-tools, .route-actions { flex-wrap: wrap; }
+      .primary, .ghost, .danger { border-radius: 9px; padding: 9px 13px; font-size: 0.82rem; white-space: nowrap; }
+      .primary { color: #f7ffff; background: linear-gradient(135deg, var(--teal), var(--teal-deep)); }
+      .ghost { color: var(--ink); background: rgba(18,52,59,0.08); }
+      .danger { color: var(--bad); background: rgba(180,58,43,0.12); }
+      .result-block { position: sticky; top: 10px; z-index: 10; margin-bottom: 14px; padding: 13px; border-radius: 16px; background: linear-gradient(135deg, rgba(11,35,41,0.98), rgba(15,72,81,0.97)); box-shadow: 0 16px 34px rgba(7,28,33,0.22); }
+      .result-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 12px; color: rgba(229,245,247,0.84); }
+      .route-label span { display: block; color: rgba(148,225,230,0.82); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+      .route-label strong { display: block; margin-top: 4px; color: #f4fbfb; font-size: 0.86rem; }
+      .kpi-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .kpi { display: grid; gap: 5px; border-radius: 12px; padding: 12px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(242,248,248,0.96)); }
+      .kpi strong { font-size: 1rem; }
+      .kpi small { color: #66848a; font-size: 0.72rem; }
+      .cm-kpi { color: #eef7f8; background: linear-gradient(180deg, rgba(83,101,110,0.98), rgba(54,72,82,0.98)); }
+      .cm-kpi span, .cm-kpi small { color: #dbe9ec; }
+      .positive { color: #35e28d; }
+      .negative { color: #ff6b7b; }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+      .detail-panel { display: grid; gap: 8px; padding: 13px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.82); }
+      .detail-head { justify-content: space-between; }
+      .table-shell { overflow: auto; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,0.8); }
+      .table-shell.tall { max-height: 720px; }
+      table { width: 100%; min-width: 680px; border-collapse: collapse; }
+      thead th { position: sticky; top: 0; z-index: 1; background: #f2f7f6; color: #57757b; text-align: left; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
+      th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.8rem; }
+      tbody tr[data-row] { cursor: pointer; }
+      tbody tr[data-row]:hover { background: rgba(20,127,128,0.05); }
+      .warning-row td { color: #8f4f20; background: rgba(241,143,75,0.1); }
+      .source-cell { display: grid; gap: 4px; min-width: 128px; }
+      .source-cell small { color: #69858a; font-size: 0.7rem; line-height: 1.35; }
+      .source-badge { width: fit-content; border-radius: 999px; padding: 3px 8px; font-size: 0.68rem; font-weight: 800; }
+      .source-badge.manual { color: var(--teal-deep); background: rgba(20,127,128,0.14); }
+      .source-badge.excel { color: #35545a; background: rgba(88,116,121,0.12); }
+      .maintenance-grid { grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.45fr); align-items: start; }
+      .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .banner { display: none; border-radius: 12px; padding: 10px 13px; margin-bottom: 14px; color: var(--teal-deep); background: rgba(230,247,247,0.96); }
+      .banner.show { display: block; }
+      .hidden { display: none !important; }
+      @media (max-width: 1120px) {
+        .hero, .maintenance-grid, .detail-grid, .kpi-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 760px) {
+        .app-shell { padding: 14px 12px 28px; }
+        .hero, .panel { padding: 15px; }
+        .hero-stats, .form-grid, .route-form { grid-template-columns: 1fr; }
+        .short, .medium, .wide, .route-actions { grid-column: auto; }
+        .panel-head, .section-head, .result-head, .input-status { flex-direction: column; align-items: stretch; }
       }
     </style>
   </head>
   <body>
     <main class="app-shell">
-      <section class="hero-panel">
+      <section class="hero">
         <div>
           <p class="eyebrow">Contribution Margin Workspace</p>
           <h1>CM Calculator</h1>
-          <p class="hero-copy">
-            静态发布版会保留模拟测算、附加费维护、码头费维护、拖驳维护和 Container Cost 维护。
-            当前数据保存在浏览器本地，适合先让团队通过 GitHub Pages 看页面结构、字段和计算逻辑。
-          </p>
+          <p class="hero-copy">Static GitHub Pages version with the Excel-imported surcharge, terminal, feeder, container cost data, and the original calculation rules loaded in the browser.</p>
         </div>
         <div class="hero-stats">
-          <div class="stat-card">
-            <span>Surcharge</span>
-            <strong id="statSurcharge">0 rows</strong>
-          </div>
-          <div class="stat-card">
-            <span>Terminal</span>
-            <strong id="statTerminal">0 rows</strong>
-          </div>
-          <div class="stat-card">
-            <span>Feeder</span>
-            <strong id="statFeeder">0 rows</strong>
-          </div>
-          <div class="stat-card">
-            <span>Container Cost</span>
-            <strong id="statContainer">0 rows</strong>
-          </div>
+          <div class="stat-card"><span>Surcharge</span><strong id="statSurcharge">Loading</strong></div>
+          <div class="stat-card"><span>Terminal</span><strong id="statTerminal">Loading</strong></div>
+          <div class="stat-card"><span>Feeder</span><strong id="statFeeder">Loading</strong></div>
+          <div class="stat-card"><span>Container Cost</span><strong id="statContainer">Loading</strong></div>
         </div>
       </section>
 
-      <section class="input-status">
+      <div class="input-status">
         <div>
-          <strong>GitHub Pages 静态链路</strong>
-          <small>后续每次页面调整都会直接同步到仓库，不需要依赖本地监听服务。</small>
+          <strong>Excel data package</strong>
+          <small>Loaded from the repository; local edits stay in this browser until the next GitHub update.</small>
         </div>
-        <button class="ghost-button" id="resetAll">恢复示例数据</button>
-      </section>
-
-      <nav class="tab-strip" aria-label="CM calculator tabs">
-        <button class="tab-button active" data-tab="simulation">
-          <span>CM 模拟</span>
-          <small>查询运费、附加费与变动成本</small>
-        </button>
-        <button class="tab-button" data-tab="surcharge">
-          <span>附加费维护</span>
-          <small>维护 tariff 附加费</small>
-        </button>
-        <button class="tab-button" data-tab="terminal">
-          <span>码头费维护</span>
-          <small>维护 THC / Tally / TS 成本</small>
-        </button>
-        <button class="tab-button" data-tab="feeder">
-          <span>拖驳维护</span>
-          <small>维护拖车、驳船与 term</small>
-        </button>
-        <button class="tab-button" data-tab="container">
-          <span>Container Cost维护</span>
-          <small>维护 Container Cost</small>
-        </button>
-      </nav>
-
+        <button class="ghost" id="resetAll">Reset to Excel data</button>
+      </div>
       <div class="banner" id="messageBanner"></div>
 
-      <section class="tab-panel" data-panel="simulation">
-        <div class="simulation-stack">
-          <section class="panel query-panel">
-            <div class="panel-header">
-              <div>
-                <h2>测算条件</h2>
-                <p>填写航线与 OFT 后，页面会匹配本地维护数据并生成 CM 结果。</p>
-              </div>
-            </div>
-            <div class="query-inline">
-              <label class="compact-field short">
-                <span>Trade</span>
-                <select id="simTrade">
-                  <option>LH</option>
-                  <option>SH</option>
-                  <option>TWN</option>
-                  <option>WAT</option>
-                  <option>AEU</option>
-                </select>
-              </label>
-              <label class="compact-field short">
-                <span>Container</span>
-                <select id="simContainer">
-                  <option>20GP</option>
-                  <option>40HC</option>
-                  <option>40RH</option>
-                </select>
-              </label>
-              <label class="compact-field short">
-                <span>Currency</span>
-                <select id="simCurrency">
-                  <option>USD</option>
-                  <option>CNY</option>
-                  <option>EUR</option>
-                </select>
-              </label>
-              <label class="compact-field short">
-                <span>OFT</span>
-                <input id="simOft" type="number" value="1350" />
-              </label>
-              <label class="compact-field medium">
-                <span>POL</span>
-                <input id="simPol" value="SHA" />
-              </label>
-              <label class="compact-field medium">
-                <span>TS Port</span>
-                <input id="simTs" value="" placeholder="Optional" />
-              </label>
-              <label class="compact-field medium">
-                <span>POD</span>
-                <input id="simPod" value="LAX" />
-              </label>
-              <div class="query-actions">
-                <button class="primary-button" id="runSimulation">Run Simulation</button>
-                <button class="ghost-button" id="clearRoute">清空路径</button>
-              </div>
-            </div>
-          </section>
+      <nav class="tabs" aria-label="Workspace sections">
+        <button class="tab active" data-tab="simulation"><span>Simulation</span><small>Route CM calculation</small></button>
+        <button class="tab" data-tab="surcharge"><span>Surcharge</span><small>Revenue maintenance</small></button>
+        <button class="tab" data-tab="terminal"><span>Terminal Cost</span><small>THC / TALLY</small></button>
+        <button class="tab" data-tab="feeder"><span>Feeder Cost</span><small>Truck / water / rail</small></button>
+        <button class="tab" data-tab="container"><span>Container Cost</span><small>CBP averages</small></button>
+      </nav>
 
-          <section class="panel result-panel">
-            <div class="result-sticky">
-              <div class="result-sticky-head">
-                <div class="result-sticky-route">
-                  <span>Route</span>
-                  <strong id="routeLabel">SHA -> LAX</strong>
-                </div>
-                <small id="resultHint">按当前维护数据实时计算</small>
-              </div>
-              <div class="kpi-grid">
-                <div class="kpi">
-                  <span>OFT</span>
-                  <strong id="kpiOft">$0</strong>
-                  <small>Base ocean freight</small>
-                </div>
-                <div class="kpi">
-                  <span>Surcharge</span>
-                  <strong id="kpiSurcharge">$0</strong>
-                  <small>Selected default rows</small>
-                </div>
-                <div class="kpi">
-                  <span>All-in OFT</span>
-                  <strong id="kpiAllIn">$0</strong>
-                  <small>OFT + surcharge</small>
-                </div>
-                <div class="kpi">
-                  <span>Variable Cost</span>
-                  <strong id="kpiCost">$0</strong>
-                  <small>Terminal + Feeder + Container + Commission</small>
-                </div>
-                <div class="kpi cm-kpi">
-                  <span>CM</span>
-                  <strong id="kpiCm" class="positive">$0</strong>
-                  <small id="kpiMargin">0.0% margin</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="detail-columns">
-              <div class="detail-panel">
-                <div class="detail-header">
-                  <h3>Revenue Lines</h3>
-                  <strong id="revenueTotal">$0</strong>
-                </div>
-                <div class="table-shell">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Charge</th>
-                        <th>Basis</th>
-                        <th>Currency</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody id="revenueBody"></tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="detail-panel">
-                <div class="detail-header">
-                  <h3>Cost Lines</h3>
-                  <strong id="costTotal">$0</strong>
-                </div>
-                <div class="table-shell">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Component</th>
-                        <th>Match</th>
-                        <th>Currency</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody id="costBody"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </section>
+      <section class="panel" data-panel="simulation">
+        <div class="panel-head">
+          <div>
+            <h2>Simulation</h2>
+            <p>Use the same route, surcharge, terminal, feeder, container cost and commission logic as the migrated calculator.</p>
+          </div>
+        </div>
+        <div class="route-form">
+          <label class="short"><span>Trade</span><select id="simTrade"><option>LH</option><option>SH</option><option>TWN</option><option>WAT</option><option>AEU</option></select></label>
+          <label class="short"><span>Container</span><select id="simContainer"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
+          <label class="short"><span>Currency</span><select id="simCurrency"><option>USD</option></select></label>
+          <label class="short"><span>OFT Amount</span><input id="simOft" type="number" value="1350" /></label>
+          <label class="short"><span>POR</span><input id="simPor" placeholder="SHA" /></label>
+          <label class="short"><span>POL</span><input id="simPol" value="SHA" /></label>
+          <label class="short"><span>TS Ports</span><input id="simTs" placeholder="NGB, BUS" /></label>
+          <label class="short"><span>POD</span><input id="simPod" value="LAX" /></label>
+          <label class="short"><span>DEL</span><input id="simDel" placeholder="LAX" /></label>
+          <label class="medium"><span>Feeder Transport</span><select id="simTransport"><option value="">Auto</option><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
+          <div class="route-actions"><button class="primary" id="runSimulation">Run Simulation</button><button class="ghost" id="clearRoute">Clear route</button></div>
+        </div>
+        <div class="result-block">
+          <div class="result-head">
+            <div class="route-label"><span>Route</span><strong id="routeLabel">SHA -> LAX</strong></div>
+            <small id="resultHint">Loading Excel data</small>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi"><span>OFT</span><strong id="kpiOft">$0</strong><small>Base ocean freight</small></div>
+            <div class="kpi"><span>Surcharge</span><strong id="kpiSurcharge">$0</strong><small>Selected default rows</small></div>
+            <div class="kpi"><span>All-in OFT</span><strong id="kpiAllIn">$0</strong><small>OFT + surcharge</small></div>
+            <div class="kpi"><span>Variable Cost</span><strong id="kpiCost">$0</strong><small>Cost + commission</small></div>
+            <div class="kpi cm-kpi"><span>CM</span><strong id="kpiCm" class="positive">$0</strong><small id="kpiMargin">0.0% margin</small></div>
+          </div>
+        </div>
+        <div class="detail-grid">
+          <div class="detail-panel">
+            <div class="detail-head"><h3>Revenue Lines</h3><strong id="revenueTotal">$0</strong></div>
+            <div class="table-shell"><table><thead><tr><th>Charge</th><th>Basis</th><th>Currency</th><th>Amount</th></tr></thead><tbody id="revenueBody"></tbody></table></div>
+          </div>
+          <div class="detail-panel">
+            <div class="detail-head"><h3>Cost Lines</h3><strong id="costTotal">$0</strong></div>
+            <div class="table-shell"><table><thead><tr><th>Component</th><th>Match</th><th>Currency</th><th>Amount</th></tr></thead><tbody id="costBody"></tbody></table></div>
+          </div>
         </div>
       </section>
 
-      <section class="tab-panel hidden" data-panel="surcharge">
+      <section class="panel hidden" data-panel="surcharge">
         <div class="maintenance-grid">
-          <div class="panel editor-panel">
-            <div class="panel-header">
-              <div>
-                <h2>附加费维护</h2>
-                <p>维护 trade、charge code、路径范围、unit 与默认是否计入 CM。</p>
-              </div>
-            </div>
+          <div class="panel">
+            <div class="panel-head"><div><h2>Surcharge Maintenance</h2><p>Manual rows are saved locally; Excel rows come from the imported files.</p></div></div>
             <form class="form-grid" data-form="surcharge">
               <label><span>Trade</span><select name="tradeCode"><option>LH</option><option>SH</option><option>TWN</option><option>WAT</option><option>AEU</option></select></label>
               <label><span>Scope</span><input name="scope" value="MANUAL" /></label>
               <label><span>Charge Code</span><input name="chargeCode" required /></label>
               <label><span>Unit</span><select name="unit"><option>20GP</option><option>40HC</option><option>40RH</option><option>BOX</option><option>BILL</option></select></label>
-              <label><span>POR</span><input name="por" /></label>
-              <label><span>POL</span><input name="pol" /></label>
-              <label><span>POD</span><input name="pod" /></label>
-              <label><span>DEL</span><input name="del" /></label>
-              <label><span>币种</span><input name="currency" value="USD" /></label>
+              <label><span>POR</span><input name="por" /></label><label><span>POL</span><input name="pol" /></label>
+              <label><span>POD</span><input name="pod" /></label><label><span>DEL</span><input name="del" /></label>
+              <label><span>Currency</span><input name="currency" value="USD" /></label>
               <label><span>Unit Rate</span><input name="unitRate" type="number" required /></label>
               <label><span>Default Selected</span><select name="defaultSelected"><option value="true">Yes</option><option value="false">No</option></select></label>
               <label><span>Include in CM</span><select name="includeInCmDefault"><option value="true">Yes</option><option value="false">No</option></select></label>
             </form>
-            <div class="actions">
-              <button class="primary-button" data-save="surcharge">保存附加费</button>
-              <button class="danger-button hidden" data-delete="surcharge">Delete row</button>
-              <button class="ghost-button" data-clear="surcharge">清空表单</button>
-            </div>
+            <div class="actions"><button class="primary" data-save="surcharge">Save surcharge</button><button class="danger hidden" data-delete="surcharge">Delete row</button><button class="ghost" data-clear="surcharge">Clear</button></div>
           </div>
-          <div class="panel list-panel">
-            <div class="panel-header">
-              <div>
-                <h2>附加费列表</h2>
-                <p>点击行可以回填到左侧继续编辑。</p>
-              </div>
-              <div class="inline-tools">
-                <select data-filter-source="surcharge"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select>
-                <input data-search="surcharge" placeholder="搜索 Trade / Charge / Port" />
-              </div>
-            </div>
-            <div class="table-shell tall">
-              <table>
-                <thead><tr><th>Charge</th><th>Route</th><th>Unit</th><th>Rate</th><th>Default</th><th>Source</th></tr></thead>
-                <tbody id="surchargeRows"></tbody>
-              </table>
-            </div>
+          <div class="panel">
+            <div class="section-head"><div><h2>Surcharge Rows</h2><p>Search by trade, charge or port.</p></div><div class="inline-tools"><select data-filter-source="surcharge"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="surcharge" placeholder="Search surcharge" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>Charge</th><th>Route</th><th>Unit</th><th>Rate</th><th>Default</th><th>Source</th></tr></thead><tbody id="surchargeRows"></tbody></table></div>
           </div>
         </div>
       </section>
 
-      <section class="tab-panel hidden" data-panel="terminal">
+      <section class="panel hidden" data-panel="terminal">
         <div class="maintenance-grid">
-          <div class="panel editor-panel">
-            <div class="panel-header">
-              <div>
-                <h2>码头费维护</h2>
-                <p>维护本地 / TS 的 THC 与 TALLY 成本。</p>
-              </div>
-            </div>
+          <div class="panel">
+            <div class="panel-head"><div><h2>Terminal Cost Maintenance</h2><p>THC / TALLY, LOCAL / TS, import and export rates.</p></div></div>
             <form class="form-grid" data-form="terminal">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label>
-              <label><span>Lane</span><input name="lane" value="ALL" /></label>
-              <label><span>IMPORT / EXPORT</span><select name="importExport"><option>EXPORT</option><option>IMPORT</option></select></label>
+              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>Lane</span><input name="lane" value="ALL" /></label>
+              <label><span>Import / Export</span><select name="importExport"><option>EXPORT</option><option>IMPORT</option></select></label>
               <label><span>Cost Type</span><select name="costType"><option>THC</option><option>TALLY</option></select></label>
-              <label><span>Port Code</span><input name="portCode" required /></label>
-              <label><span>LOCAL / TS</span><select name="localTs"><option>LOCAL</option><option>TS</option></select></label>
-              <label><span>币种</span><input name="currency" value="USD" /></label>
-              <label><span>Type Note</span><input name="typeNote" /></label>
-              <label><span>20GP</span><input name="rate20gp" type="number" /></label>
-              <label><span>40HC</span><input name="rate40hc" type="number" /></label>
-              <label><span>40RH</span><input name="rate40rh" type="number" /></label>
+              <label><span>Port Code</span><input name="portCode" required /></label><label><span>LOCAL / TS</span><select name="localTs"><option>LOCAL</option><option>TS</option></select></label>
+              <label><span>Currency</span><input name="currency" value="USD" /></label><label><span>Type Note</span><input name="typeNote" /></label>
+              <label><span>20GP</span><input name="rate20gp" type="number" /></label><label><span>40HC</span><input name="rate40hc" type="number" /></label><label><span>40RH</span><input name="rate40rh" type="number" /></label>
             </form>
-            <div class="actions">
-              <button class="primary-button" data-save="terminal">保存码头费</button>
-              <button class="danger-button hidden" data-delete="terminal">Delete row</button>
-              <button class="ghost-button" data-clear="terminal">清空表单</button>
-            </div>
+            <div class="actions"><button class="primary" data-save="terminal">Save terminal</button><button class="danger hidden" data-delete="terminal">Delete row</button><button class="ghost" data-clear="terminal">Clear</button></div>
           </div>
-          <div class="panel list-panel">
-            <div class="panel-header">
-              <div>
-                <h2>码头费列表</h2>
-                <p>支持按 Port / Lane / Currency 搜索。</p>
-              </div>
-              <div class="inline-tools">
-                <select data-filter-source="terminal"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select>
-                <input data-search="terminal" placeholder="搜索 Port / Lane / Currency" />
-              </div>
-            </div>
-            <div class="table-shell tall">
-              <table>
-                <thead><tr><th>Port</th><th>类型</th><th>币种</th><th>20GP</th><th>40HC</th><th>40RH</th><th>Source</th></tr></thead>
-                <tbody id="terminalRows"></tbody>
-              </table>
-            </div>
+          <div class="panel">
+            <div class="section-head"><div><h2>Terminal Rows</h2><p>Search by port, lane or currency.</p></div><div class="inline-tools"><select data-filter-source="terminal"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="terminal" placeholder="Search terminal" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>Port</th><th>Type</th><th>Currency</th><th>20GP</th><th>40HC</th><th>40RH</th><th>Source</th></tr></thead><tbody id="terminalRows"></tbody></table></div>
           </div>
         </div>
       </section>
 
-      <section class="tab-panel hidden" data-panel="feeder">
+      <section class="panel hidden" data-panel="feeder">
         <div class="maintenance-grid">
-          <div class="panel editor-panel">
-            <div class="panel-header">
-              <div>
-                <h2>拖驳费维护</h2>
-                <p>支持维护 From / To / Transport / Container 的费率，并可定义 term。</p>
-              </div>
-            </div>
+          <div class="panel">
+            <div class="panel-head"><div><h2>Feeder Cost Maintenance</h2><p>Rates by from/to port, transport mode, container and term.</p></div></div>
             <form class="form-grid" data-form="feeder">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label>
-              <label><span>From Port</span><input name="fromPort" required /></label>
-              <label><span>To Port</span><input name="toPort" required /></label>
-              <label><span>Transport</span><select name="transportType"><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
-              <label><span>柜型</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
-              <label><span>币种</span><input name="currency" value="USD" /></label>
-              <label><span>Rate</span><input name="unitRate" type="number" required /></label>
-              <label><span>Term</span><select name="term"><option value="">自动默认</option><option>CYCY</option><option>FIO</option><option>FICY</option><option>CYFO</option></select></label>
+              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>From Port</span><input name="fromPort" required /></label>
+              <label><span>To Port</span><input name="toPort" required /></label><label><span>Transport</span><select name="transportType"><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
+              <label><span>Container</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label><label><span>Currency</span><input name="currency" value="USD" /></label>
+              <label><span>Rate</span><input name="unitRate" type="number" required /></label><label><span>Term</span><select name="term"><option value="">Not set</option><option>CYCY</option><option>FIO</option><option>FICY</option><option>CYFO</option></select></label>
             </form>
-            <div class="actions">
-              <button class="primary-button" data-save="feeder">保存拖驳费</button>
-              <button class="danger-button hidden" data-delete="feeder">Delete row</button>
-              <button class="ghost-button" data-clear="feeder">清空表单</button>
-            </div>
+            <div class="actions"><button class="primary" data-save="feeder">Save feeder</button><button class="danger hidden" data-delete="feeder">Delete row</button><button class="ghost" data-clear="feeder">Clear</button></div>
           </div>
-          <div class="panel list-panel">
-            <div class="panel-header">
-              <div>
-                <h2>拖驳费列表</h2>
-                <p>用于匹配 POL 到 POD 或经 TS 的外部 feeder 段。</p>
-              </div>
-              <div class="inline-tools">
-                <select data-filter-source="feeder"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select>
-                <input data-search="feeder" placeholder="搜索 Port / Term / Transport" />
-              </div>
-            </div>
-            <div class="table-shell tall">
-              <table>
-                <thead><tr><th>路径</th><th>Transport</th><th>柜型</th><th>Rate</th><th>Term</th><th>Source</th></tr></thead>
-                <tbody id="feederRows"></tbody>
-              </table>
-            </div>
+          <div class="panel">
+            <div class="section-head"><div><h2>Feeder Rows</h2><p>Search by port, term or transport.</p></div><div class="inline-tools"><select data-filter-source="feeder"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="feeder" placeholder="Search feeder" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>Route</th><th>Transport</th><th>Container</th><th>Rate</th><th>Term</th><th>Source</th></tr></thead><tbody id="feederRows"></tbody></table></div>
           </div>
         </div>
       </section>
 
-      <section class="tab-panel hidden" data-panel="container">
+      <section class="panel hidden" data-panel="container">
         <div class="maintenance-grid">
-          <div class="panel editor-panel">
-            <div class="panel-header">
-              <div>
-                <h2>Container Cost维护</h2>
-                <p>维护同一路径与柜型下的 Container Cost，测算时按匹配路径取平均值。</p>
-              </div>
-            </div>
+          <div class="panel">
+            <div class="panel-head"><div><h2>Container Cost Maintenance</h2><p>Average CBP cost by POL, POD and container.</p></div></div>
             <form class="form-grid" data-form="container">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label>
-              <label><span>柜型</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
-              <label><span>POR</span><input name="por" /></label>
-              <label><span>POL</span><input name="pol" required /></label>
-              <label><span>POD</span><input name="pod" required /></label>
-              <label><span>DEL</span><input name="del" /></label>
-              <label><span>Container Cost总额（原始）</span><input name="cbpTotalCost" type="number" /></label>
-              <label><span>Container Cost</span><input name="cbpAverageCost" type="number" required /></label>
-              <label><span>币种</span><input name="currency" value="USD" /></label>
+              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>Container</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
+              <label><span>POR</span><input name="por" /></label><label><span>POL</span><input name="pol" required /></label><label><span>POD</span><input name="pod" required /></label><label><span>DEL</span><input name="del" /></label>
+              <label><span>CBP Total Cost</span><input name="cbpTotalCost" type="number" /></label><label><span>CBP Average Cost</span><input name="cbpAverageCost" type="number" required /></label><label><span>Currency</span><input name="currency" value="USD" /></label>
             </form>
-            <div class="actions">
-              <button class="primary-button" data-save="container">保存 Container Cost</button>
-              <button class="danger-button hidden" data-delete="container">Delete row</button>
-              <button class="ghost-button" data-clear="container">清空表单</button>
-            </div>
+            <div class="actions"><button class="primary" data-save="container">Save container cost</button><button class="danger hidden" data-delete="container">Delete row</button><button class="ghost" data-clear="container">Clear</button></div>
           </div>
-          <div class="panel list-panel">
-            <div class="panel-header">
-              <div>
-                <h2>Container Cost列表</h2>
-                <p>用于补充 CM 中的箱成本估算。</p>
-              </div>
-              <div class="inline-tools">
-                <select data-filter-source="container"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select>
-                <input data-search="container" placeholder="搜索 POL / POD / 柜型" />
-              </div>
-            </div>
-            <div class="table-shell tall">
-              <table>
-                <thead><tr><th>路径</th><th>柜型</th><th>Container Cost</th><th>Month</th><th>Source</th></tr></thead>
-                <tbody id="containerRows"></tbody>
-              </table>
-            </div>
+          <div class="panel">
+            <div class="section-head"><div><h2>Container Cost Rows</h2><p>Search by POL, POD or container.</p></div><div class="inline-tools"><select data-filter-source="container"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="container" placeholder="Search container" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>Route</th><th>Container</th><th>Container Cost</th><th>Month</th><th>Source</th></tr></thead><tbody id="containerRows"></tbody></table></div>
           </div>
         </div>
       </section>
     </main>
 
     <script>
-      const STORAGE_KEY = "cm-calculator-static-v2";
-      const exchangeRates = { USD: 1, CNY: 0.14, EUR: 1.08 };
-      const tabs = ["simulation", "surcharge", "terminal", "feeder", "container"];
-      const formIds = {
-        surcharge: ["tradeCode", "scope", "chargeCode", "por", "pol", "pod", "del", "unit", "currency", "unitRate", "defaultSelected", "includeInCmDefault"],
-        terminal: ["monthCode", "lane", "importExport", "costType", "portCode", "localTs", "currency", "typeNote", "rate20gp", "rate40hc", "rate40rh"],
-        feeder: ["monthCode", "fromPort", "toPort", "transportType", "containerType", "currency", "unitRate", "term"],
-        container: ["monthCode", "containerType", "por", "pol", "pod", "del", "cbpTotalCost", "cbpAverageCost", "currency"],
-      };
-      const numericFields = new Set(["unitRate", "rate20gp", "rate40hc", "rate40rh", "cbpTotalCost", "cbpAverageCost"]);
-      const boolFields = new Set(["defaultSelected", "includeInCmDefault"]);
-      const searches = { surcharge: "", terminal: "", feeder: "", container: "" };
-      const filters = { surcharge: "all", terminal: "all", feeder: "all", container: "all" };
-      const editing = { surcharge: null, terminal: null, feeder: null, container: null };
-
-      const seed = {
-        surcharge: [
-          { id: 1, tradeCode: "LH", scope: "MANUAL", chargeCode: "BAF", por: "", pol: "SHA", pod: "LAX", del: "", unit: "20GP", currency: "USD", unitRate: 180, defaultSelected: true, includeInCmDefault: true, sourceFile: "MANUAL", sourceSheet: "Static seed" },
-          { id: 2, tradeCode: "LH", scope: "MANUAL", chargeCode: "DOC", por: "", pol: "", pod: "", del: "", unit: "BILL", currency: "USD", unitRate: 45, defaultSelected: true, includeInCmDefault: true, sourceFile: "MANUAL", sourceSheet: "Static seed" },
-          { id: 3, tradeCode: "SH", scope: "EXCEL", chargeCode: "PSS", por: "", pol: "YTN", pod: "SIN", del: "", unit: "40HC", currency: "USD", unitRate: 120, defaultSelected: false, includeInCmDefault: true, sourceFile: "surcharge.xlsx", sourceSheet: "Tariff" },
-        ],
-        terminal: [
-          { id: 1, monthCode: "ALL", lane: "ALL", importExport: "EXPORT", costType: "THC", portCode: "SHA", localTs: "LOCAL", currency: "USD", typeNote: "Export THC", rate20gp: 130, rate40hc: 205, rate40rh: 260, sourceFile: "MANUAL", sourceSheet: "Static seed" },
-          { id: 2, monthCode: "ALL", lane: "ALL", importExport: "IMPORT", costType: "THC", portCode: "LAX", localTs: "LOCAL", currency: "USD", typeNote: "Import THC", rate20gp: 150, rate40hc: 240, rate40rh: 300, sourceFile: "terminal.xlsx", sourceSheet: "THC" },
-          { id: 3, monthCode: "ALL", lane: "ALL", importExport: "EXPORT", costType: "TALLY", portCode: "SHA", localTs: "LOCAL", currency: "USD", typeNote: "Tally", rate20gp: 20, rate40hc: 35, rate40rh: 40, sourceFile: "MANUAL", sourceSheet: "Static seed" },
-        ],
-        feeder: [
-          { id: 1, monthCode: "ALL", fromPort: "SHA", toPort: "LAX", transportType: "WATER", containerType: "20GP", currency: "USD", unitRate: 230, term: "CYCY", sourceFile: "MANUAL", sourceSheet: "Static seed" },
-          { id: 2, monthCode: "ALL", fromPort: "YTN", toPort: "SIN", transportType: "WATER", containerType: "40HC", currency: "USD", unitRate: 170, term: "CYCY", sourceFile: "feeder.xlsx", sourceSheet: "Feeder" },
-        ],
-        container: [
-          { id: 1, monthCode: "ALL", por: "SHA", pol: "SHA", pod: "LAX", del: "LAX", containerType: "20GP", cbpTotalCost: 7000, cbpAverageCost: 70, currency: "USD", sourceFile: "MANUAL", sourceSheet: "Static seed" },
-          { id: 2, monthCode: "ALL", por: "YTN", pol: "YTN", pod: "SIN", del: "SIN", containerType: "40HC", cbpTotalCost: 8200, cbpAverageCost: 82, currency: "USD", sourceFile: "container-cost.xlsx", sourceSheet: "Cost" },
-        ],
-      };
-
-      let state = loadState();
-
-      function clone(value) {
-        return JSON.parse(JSON.stringify(value));
-      }
-
-      function loadState() {
-        try {
-          const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-          if (stored && stored.surcharge && stored.terminal && stored.feeder && stored.container) {
-            return stored;
-          }
-        } catch (error) {
-          console.warn(error);
-        }
-        return clone(seed);
-      }
-
-      function saveState() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      }
-
-      function toUsd(amount, currency) {
-        return Number(amount || 0) * (exchangeRates[String(currency || "USD").toUpperCase()] || 1);
-      }
-
-      function money(value, currency = "USD") {
-        return new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: currency || "USD",
-          maximumFractionDigits: 0,
-          minimumFractionDigits: 0,
-        }).format(Number(value || 0));
-      }
-
-      function upper(value) {
-        return String(value || "").trim().toUpperCase();
-      }
-
-      function html(value) {
-        return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        })[char]);
-      }
-
-      function matchesPort(rowValue, queryValue) {
-        const row = upper(rowValue);
-        const query = upper(queryValue);
-        return !row || !query || row === query;
-      }
-
-      function routeText(row) {
-        const ports = [row.por, row.pol, row.pod, row.del].map((item) => upper(item)).filter(Boolean);
-        return ports.length ? ports.join(" -> ") : "ALL ROUTE";
-      }
-
-      function sourceBadge(row) {
-        const manual = row.sourceFile === "MANUAL";
-        return `<div class="source-cell"><span class="source-badge ${manual ? "manual" : "excel"}">${manual ? "Manual" : "Excel"}</span><small>${html(manual ? "Saved in browser" : `${row.sourceFile} / ${row.sourceSheet || ""}`)}</small></div>`;
-      }
-
-      function getRateByContainer(row, containerType) {
-        if (containerType === "40HC") return Number(row.rate40hc || 0);
-        if (containerType === "40RH") return Number(row.rate40rh || 0);
-        return Number(row.rate20gp || 0);
-      }
-
-      function showMessage(message) {
+      (async () => {
+        const JS_CHUNKS = Array.from({ length: 6 }, (_, index) => `./cm-js/part-${String(index).padStart(2, "0")}.txt`);
+        const responses = await Promise.all(JS_CHUNKS.map((url) => fetch(url, { cache: "no-store" })));
+        const failed = responses.find((response) => !response.ok);
+        if (failed) throw new Error(`Application file failed to load: ${failed.status}`);
+        const encoded = (await Promise.all(responses.map((response) => response.text()))).join("").trim();
+        const binary = atob(encoded);
+        const bytes = new Uint8Array(binary.length);
+        for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+        const code = new TextDecoder().decode(bytes);
+        const script = document.createElement("script");
+        script.textContent = code;
+        document.body.appendChild(script);
+      })().catch((error) => {
         const banner = document.getElementById("messageBanner");
-        banner.textContent = message;
         banner.classList.add("show");
-        window.clearTimeout(showMessage.timer);
-        showMessage.timer = window.setTimeout(() => banner.classList.remove("show"), 2600);
-      }
-
-      function setActiveTab(tab) {
-        document.querySelectorAll("[data-tab]").forEach((button) => {
-          button.classList.toggle("active", button.dataset.tab === tab);
-        });
-        document.querySelectorAll("[data-panel]").forEach((panel) => {
-          panel.classList.toggle("hidden", panel.dataset.panel !== tab);
-        });
-      }
-
-      function nextId(collection) {
-        return state[collection].reduce((max, row) => Math.max(max, Number(row.id || 0)), 0) + 1;
-      }
-
-      function readForm(collection) {
-        const form = document.querySelector(`[data-form="${collection}"]`);
-        const row = {};
-        formIds[collection].forEach((field) => {
-          const input = form.elements[field];
-          let value = input ? input.value : "";
-          if (numericFields.has(field)) {
-            value = value === "" ? null : Number(value);
-          } else if (boolFields.has(field)) {
-            value = value === "true";
-          } else {
-            value = upper(value);
-          }
-          row[field] = value;
-        });
-        row.sourceFile = "MANUAL";
-        row.sourceSheet = "Browser local";
-        return row;
-      }
-
-      function fillForm(collection, row) {
-        const form = document.querySelector(`[data-form="${collection}"]`);
-        editing[collection] = row ? row.id : null;
-        formIds[collection].forEach((field) => {
-          const input = form.elements[field];
-          if (!input) return;
-          const value = row ? row[field] : input.getAttribute("value") || "";
-          input.value = value === null || value === undefined ? "" : String(value);
-        });
-        const deleteButton = document.querySelector(`[data-delete="${collection}"]`);
-        deleteButton.classList.toggle("hidden", !row);
-      }
-
-      function clearForm(collection) {
-        const form = document.querySelector(`[data-form="${collection}"]`);
-        form.reset();
-        editing[collection] = null;
-        document.querySelector(`[data-delete="${collection}"]`).classList.add("hidden");
-      }
-
-      function saveRow(collection) {
-        const row = readForm(collection);
-        if (editing[collection]) {
-          row.id = editing[collection];
-          state[collection] = state[collection].map((item) => (item.id === editing[collection] ? { ...item, ...row } : item));
-        } else {
-          row.id = nextId(collection);
-          state[collection].unshift(row);
-        }
-        saveState();
-        renderAll();
-        fillForm(collection, row);
-        showMessage("已保存到当前浏览器本地数据。");
-      }
-
-      function deleteRow(collection) {
-        if (!editing[collection]) return;
-        state[collection] = state[collection].filter((row) => row.id !== editing[collection]);
-        saveState();
-        clearForm(collection);
-        renderAll();
-        showMessage("已删除当前行。");
-      }
-
-      function visibleRows(collection) {
-        const query = upper(searches[collection]);
-        const source = filters[collection];
-        return state[collection].filter((row) => {
-          const sourceOk = source === "all" || (source === "manual" ? row.sourceFile === "MANUAL" : row.sourceFile !== "MANUAL");
-          const text = upper(Object.values(row).join(" "));
-          return sourceOk && (!query || text.includes(query));
-        });
-      }
-
-      function renderStats() {
-        document.getElementById("statSurcharge").textContent = `${state.surcharge.length} rows`;
-        document.getElementById("statTerminal").textContent = `${state.terminal.length} rows`;
-        document.getElementById("statFeeder").textContent = `${state.feeder.length} rows`;
-        document.getElementById("statContainer").textContent = `${state.container.length} rows`;
-      }
-
-      function renderSurchargeRows() {
-        document.getElementById("surchargeRows").innerHTML = visibleRows("surcharge").map((row) => `
-          <tr data-row="surcharge" data-id="${row.id}">
-            <td><strong>${html(row.chargeCode)}</strong><br><small>${html(row.tradeCode)} / ${html(row.scope)}</small></td>
-            <td>${html(routeText(row))}</td>
-            <td>${html(row.unit)}</td>
-            <td>${html(row.currency)} ${Number(row.unitRate || 0).toLocaleString("en-US")}</td>
-            <td>${row.defaultSelected ? "Yes" : "No"}</td>
-            <td>${sourceBadge(row)}</td>
-          </tr>
-        `).join("") || `<tr><td colspan="6"><div class="empty-state">暂无匹配数据</div></td></tr>`;
-      }
-
-      function renderTerminalRows() {
-        document.getElementById("terminalRows").innerHTML = visibleRows("terminal").map((row) => `
-          <tr data-row="terminal" data-id="${row.id}">
-            <td><strong>${html(row.portCode)}</strong><br><small>${html(row.lane)} / ${html(row.monthCode)}</small></td>
-            <td>${html(row.importExport)} / ${html(row.localTs)} / ${html(row.costType)}</td>
-            <td>${html(row.currency)}</td>
-            <td>${row.rate20gp ?? "-"}</td>
-            <td>${row.rate40hc ?? "-"}</td>
-            <td>${row.rate40rh ?? "-"}</td>
-            <td>${sourceBadge(row)}</td>
-          </tr>
-        `).join("") || `<tr><td colspan="7"><div class="empty-state">暂无匹配数据</div></td></tr>`;
-      }
-
-      function renderFeederRows() {
-        document.getElementById("feederRows").innerHTML = visibleRows("feeder").map((row) => `
-          <tr data-row="feeder" data-id="${row.id}">
-            <td><strong>${html(row.fromPort)} -> ${html(row.toPort)}</strong><br><small>${html(row.monthCode)}</small></td>
-            <td>${html(row.transportType)}</td>
-            <td>${html(row.containerType)}</td>
-            <td>${html(row.currency)} ${Number(row.unitRate || 0).toLocaleString("en-US")}</td>
-            <td>${html(row.term || "自动默认")}</td>
-            <td>${sourceBadge(row)}</td>
-          </tr>
-        `).join("") || `<tr><td colspan="6"><div class="empty-state">暂无匹配数据</div></td></tr>`;
-      }
-
-      function renderContainerRows() {
-        document.getElementById("containerRows").innerHTML = visibleRows("container").map((row) => `
-          <tr data-row="container" data-id="${row.id}">
-            <td><strong>${html(row.pol)} -> ${html(row.pod)}</strong><br><small>${html(row.por || row.pol)} -> ${html(row.del || row.pod)}</small></td>
-            <td>${html(row.containerType)}</td>
-            <td>${html(row.currency)} ${Number(row.cbpAverageCost || 0).toLocaleString("en-US")}</td>
-            <td>${html(row.monthCode)}</td>
-            <td>${sourceBadge(row)}</td>
-          </tr>
-        `).join("") || `<tr><td colspan="5"><div class="empty-state">暂无匹配数据</div></td></tr>`;
-      }
-
-      function buildSimulation() {
-        const trade = upper(document.getElementById("simTrade").value);
-        const containerType = upper(document.getElementById("simContainer").value);
-        const currency = upper(document.getElementById("simCurrency").value);
-        const oft = Number(document.getElementById("simOft").value || 0);
-        const pol = upper(document.getElementById("simPol").value);
-        const ts = upper(document.getElementById("simTs").value);
-        const pod = upper(document.getElementById("simPod").value);
-        const routeLabel = [pol, ts, pod].filter(Boolean).join(" -> ") || "-";
-
-        const matchedSurcharges = state.surcharge.filter((row) =>
-          row.includeInCmDefault &&
-          row.defaultSelected &&
-          (!row.tradeCode || row.tradeCode === trade) &&
-          matchesPort(row.pol, pol) &&
-          matchesPort(row.pod, pod) &&
-          (row.unit === containerType || row.unit === "BOX" || row.unit === "BILL")
-        );
-
-        const revenueLines = [
-          { charge: "OFT", basis: `${trade} / ${containerType}`, currency, amount: oft, amountUsd: toUsd(oft, currency) },
-          ...matchedSurcharges.map((row) => ({
-            charge: row.chargeCode,
-            basis: `${routeText(row)} / ${row.unit}`,
-            currency: row.currency,
-            amount: Number(row.unitRate || 0),
-            amountUsd: toUsd(row.unitRate, row.currency),
-          })),
-        ];
-
-        const exportTerminals = state.terminal.filter((row) => row.importExport === "EXPORT" && row.localTs === "LOCAL" && row.portCode === pol);
-        const importTerminals = state.terminal.filter((row) => row.importExport === "IMPORT" && row.localTs === "LOCAL" && row.portCode === pod);
-        const terminalLines = [...exportTerminals, ...importTerminals].map((row) => {
-          const amount = getRateByContainer(row, containerType);
-          return { component: row.costType, match: `${row.portCode} / ${row.importExport}`, currency: row.currency, amount, amountUsd: toUsd(amount, row.currency) };
-        }).filter((line) => line.amount);
-
-        const feederLines = state.feeder.filter((row) =>
-          row.containerType === containerType &&
-          ((row.fromPort === pol && row.toPort === pod) || (ts && ((row.fromPort === pol && row.toPort === ts) || (row.fromPort === ts && row.toPort === pod))))
-        ).map((row) => ({
-          component: `FEEDER ${row.transportType}`,
-          match: `${row.fromPort} -> ${row.toPort} / ${row.term || "AUTO"}`,
-          currency: row.currency,
-          amount: Number(row.unitRate || 0),
-          amountUsd: toUsd(row.unitRate, row.currency),
-        }));
-
-        const containerLines = state.container.filter((row) =>
-          row.containerType === containerType &&
-          matchesPort(row.pol, pol) &&
-          matchesPort(row.pod, pod)
-        ).map((row) => ({
-          component: "CONTAINER COST",
-          match: `${row.pol} -> ${row.pod}`,
-          currency: row.currency,
-          amount: Number(row.cbpAverageCost || 0),
-          amountUsd: toUsd(row.cbpAverageCost, row.currency),
-        }));
-
-        const revenueUsd = revenueLines.reduce((sum, row) => sum + row.amountUsd, 0);
-        const commission = revenueUsd * 0.03;
-        const costLines = [
-          ...terminalLines,
-          ...feederLines,
-          ...containerLines,
-          { component: "AGENT COMMISSION", match: "3% of All-in OFT", currency: "USD", amount: commission, amountUsd: commission },
-        ];
-        const costUsd = costLines.reduce((sum, row) => sum + row.amountUsd, 0);
-        const cmUsd = revenueUsd - costUsd;
-        const margin = revenueUsd ? (cmUsd / revenueUsd) * 100 : 0;
-
-        return { routeLabel, revenueLines, costLines, revenueUsd, costUsd, cmUsd, margin, oftUsd: toUsd(oft, currency), surchargeUsd: revenueUsd - toUsd(oft, currency) };
-      }
-
-      function renderSimulation() {
-        const result = buildSimulation();
-        document.getElementById("routeLabel").textContent = result.routeLabel;
-        document.getElementById("kpiOft").textContent = money(result.oftUsd);
-        document.getElementById("kpiSurcharge").textContent = money(result.surchargeUsd);
-        document.getElementById("kpiAllIn").textContent = money(result.revenueUsd);
-        document.getElementById("kpiCost").textContent = money(result.costUsd);
-        const cmNode = document.getElementById("kpiCm");
-        cmNode.textContent = money(result.cmUsd);
-        cmNode.className = result.cmUsd >= 0 ? "positive" : "negative";
-        document.getElementById("kpiMargin").textContent = `${result.margin.toFixed(1)}% margin`;
-        document.getElementById("revenueTotal").textContent = money(result.revenueUsd);
-        document.getElementById("costTotal").textContent = money(result.costUsd);
-        document.getElementById("revenueBody").innerHTML = result.revenueLines.map((row) => `
-          <tr><td>${html(row.charge)}</td><td>${html(row.basis)}</td><td>${html(row.currency)}</td><td>${money(row.amount, row.currency)}</td></tr>
-        `).join("");
-        document.getElementById("costBody").innerHTML = result.costLines.map((row) => `
-          <tr><td>${html(row.component)}</td><td>${html(row.match)}</td><td>${html(row.currency)}</td><td>${money(row.amount, row.currency)}</td></tr>
-        `).join("");
-      }
-
-      function renderAll() {
-        renderStats();
-        renderSurchargeRows();
-        renderTerminalRows();
-        renderFeederRows();
-        renderContainerRows();
-        renderSimulation();
-      }
-
-      document.querySelectorAll("[data-tab]").forEach((button) => {
-        button.addEventListener("click", () => setActiveTab(button.dataset.tab));
+        banner.textContent = error instanceof Error ? error.message : "Application failed to load.";
       });
-
-      document.querySelectorAll("[data-save]").forEach((button) => {
-        button.addEventListener("click", () => saveRow(button.dataset.save));
-      });
-
-      document.querySelectorAll("[data-delete]").forEach((button) => {
-        button.addEventListener("click", () => deleteRow(button.dataset.delete));
-      });
-
-      document.querySelectorAll("[data-clear]").forEach((button) => {
-        button.addEventListener("click", () => clearForm(button.dataset.clear));
-      });
-
-      document.querySelectorAll("[data-search]").forEach((input) => {
-        input.addEventListener("input", () => {
-          searches[input.dataset.search] = input.value;
-          renderAll();
-        });
-      });
-
-      document.querySelectorAll("[data-filter-source]").forEach((select) => {
-        select.addEventListener("change", () => {
-          filters[select.dataset.filterSource] = select.value;
-          renderAll();
-        });
-      });
-
-      document.querySelectorAll("input, select").forEach((input) => {
-        input.addEventListener("input", () => {
-          if (input.id && input.id.startsWith("sim")) renderSimulation();
-          if (input.tagName === "INPUT") input.value = input.value.toUpperCase();
-        });
-      });
-
-      document.addEventListener("click", (event) => {
-        const row = event.target.closest("tr[data-row]");
-        if (!row) return;
-        const collection = row.dataset.row;
-        const item = state[collection].find((entry) => String(entry.id) === row.dataset.id);
-        if (item) fillForm(collection, item);
-      });
-
-      document.getElementById("runSimulation").addEventListener("click", () => {
-        renderSimulation();
-        showMessage("测算已刷新。");
-      });
-
-      document.getElementById("clearRoute").addEventListener("click", () => {
-        document.getElementById("simPol").value = "";
-        document.getElementById("simTs").value = "";
-        document.getElementById("simPod").value = "";
-        renderSimulation();
-      });
-
-      document.getElementById("resetAll").addEventListener("click", () => {
-        state = clone(seed);
-        saveState();
-        tabs.filter((tab) => tab !== "simulation").forEach(clearForm);
-        renderAll();
-        showMessage("已恢复示例数据。");
-      });
-
-      renderAll();
     </script>
   </body>
 </html>
