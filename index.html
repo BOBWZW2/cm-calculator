@@ -129,76 +129,76 @@
     <main class="app-shell">
       <section class="hero">
         <div>
-          <p class="eyebrow">Contribution Margin Workspace</p>
+          <p class="eyebrow">贡献毛利测算工作台</p>
           <h1>CM Calculator</h1>
-          <p class="hero-copy">Static GitHub Pages version with the Excel-imported surcharge, terminal, feeder, container cost data, and the original calculation rules loaded in the browser.</p>
+          <p class="hero-copy">GitHub Pages 静态发布版，已加载 Excel 导入的附加费、码头费、拖驳费、Container Cost 数据，并在浏览器中执行原有测算逻辑。</p>
         </div>
         <div class="hero-stats">
-          <div class="stat-card"><span>Surcharge</span><strong id="statSurcharge">Loading</strong></div>
-          <div class="stat-card"><span>Terminal</span><strong id="statTerminal">Loading</strong></div>
-          <div class="stat-card"><span>Feeder</span><strong id="statFeeder">Loading</strong></div>
-          <div class="stat-card"><span>Container Cost</span><strong id="statContainer">Loading</strong></div>
+          <div class="stat-card"><span>附加费</span><strong id="statSurcharge">加载中</strong></div>
+          <div class="stat-card"><span>码头费</span><strong id="statTerminal">加载中</strong></div>
+          <div class="stat-card"><span>拖驳费</span><strong id="statFeeder">加载中</strong></div>
+          <div class="stat-card"><span>Container Cost</span><strong id="statContainer">加载中</strong></div>
         </div>
       </section>
 
       <div class="input-status">
         <div>
-          <strong>Excel data package</strong>
-          <small>Loaded from the repository; local edits stay in this browser until the next GitHub update.</small>
+          <strong>Excel 数据包</strong>
+          <small>数据从 GitHub 仓库加载；页面上的临时维护会保存在当前浏览器，正式更新仍由后续 GitHub 同步发布。</small>
         </div>
-        <button class="ghost" id="resetAll">Reset to Excel data</button>
+        <button class="ghost" id="resetAll">恢复 Excel 数据</button>
       </div>
       <div class="banner" id="messageBanner"></div>
 
-      <nav class="tabs" aria-label="Workspace sections">
-        <button class="tab active" data-tab="simulation"><span>Simulation</span><small>Route CM calculation</small></button>
-        <button class="tab" data-tab="surcharge"><span>Surcharge</span><small>Revenue maintenance</small></button>
-        <button class="tab" data-tab="terminal"><span>Terminal Cost</span><small>THC / TALLY</small></button>
-        <button class="tab" data-tab="feeder"><span>Feeder Cost</span><small>Truck / water / rail</small></button>
-        <button class="tab" data-tab="container"><span>Container Cost</span><small>CBP averages</small></button>
+      <nav class="tabs" aria-label="工作台模块">
+        <button class="tab active" data-tab="simulation"><span>CM 模拟</span><small>航线贡献毛利测算</small></button>
+        <button class="tab" data-tab="surcharge"><span>附加费维护</span><small>收入项维护</small></button>
+        <button class="tab" data-tab="terminal"><span>码头费维护</span><small>THC / TALLY</small></button>
+        <button class="tab" data-tab="feeder"><span>拖驳费维护</span><small>拖车 / 驳船 / 铁路</small></button>
+        <button class="tab" data-tab="container"><span>Container Cost维护</span><small>CBP 平均成本</small></button>
       </nav>
 
       <section class="panel" data-panel="simulation">
         <div class="panel-head">
           <div>
-            <h2>Simulation</h2>
-            <p>Use the same route, surcharge, terminal, feeder, container cost and commission logic as the migrated calculator.</p>
+            <h2>CM 模拟</h2>
+            <p>使用迁移任务中的航线、附加费、码头费、拖驳费、Container Cost 与代理佣金逻辑进行测算。</p>
           </div>
         </div>
         <div class="route-form">
           <label class="short"><span>Trade</span><select id="simTrade"><option>LH</option><option>SH</option><option>TWN</option><option>WAT</option><option>AEU</option></select></label>
-          <label class="short"><span>Container</span><select id="simContainer"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
-          <label class="short"><span>Currency</span><select id="simCurrency"><option>USD</option></select></label>
-          <label class="short"><span>OFT Amount</span><input id="simOft" type="number" value="1350" /></label>
+          <label class="short"><span>箱型</span><select id="simContainer"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
+          <label class="short"><span>币种</span><select id="simCurrency"><option>USD</option></select></label>
+          <label class="short"><span>OFT 金额</span><input id="simOft" type="number" value="1350" /></label>
           <label class="short"><span>POR</span><input id="simPor" placeholder="SHA" /></label>
           <label class="short"><span>POL</span><input id="simPol" value="SHA" /></label>
-          <label class="short"><span>TS Ports</span><input id="simTs" placeholder="NGB, BUS" /></label>
+          <label class="short"><span>中转港</span><input id="simTs" placeholder="NGB, BUS" /></label>
           <label class="short"><span>POD</span><input id="simPod" value="LAX" /></label>
           <label class="short"><span>DEL</span><input id="simDel" placeholder="LAX" /></label>
-          <label class="medium"><span>Feeder Transport</span><select id="simTransport"><option value="">Auto</option><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
-          <div class="route-actions"><button class="primary" id="runSimulation">Run Simulation</button><button class="ghost" id="clearRoute">Clear route</button></div>
+          <label class="medium"><span>拖驳方式</span><select id="simTransport"><option value="">自动</option><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
+          <div class="route-actions"><button class="primary" id="runSimulation">开始测算</button><button class="ghost" id="clearRoute">清空路径</button></div>
         </div>
         <div class="result-block">
           <div class="result-head">
-            <div class="route-label"><span>Route</span><strong id="routeLabel">SHA -> LAX</strong></div>
-            <small id="resultHint">Loading Excel data</small>
+            <div class="route-label"><span>航线</span><strong id="routeLabel">SHA -> LAX</strong></div>
+            <small id="resultHint">正在加载 Excel 数据</small>
           </div>
           <div class="kpi-grid">
-            <div class="kpi"><span>OFT</span><strong id="kpiOft">$0</strong><small>Base ocean freight</small></div>
-            <div class="kpi"><span>Surcharge</span><strong id="kpiSurcharge">$0</strong><small>Selected default rows</small></div>
-            <div class="kpi"><span>All-in OFT</span><strong id="kpiAllIn">$0</strong><small>OFT + surcharge</small></div>
-            <div class="kpi"><span>Variable Cost</span><strong id="kpiCost">$0</strong><small>Cost + commission</small></div>
-            <div class="kpi cm-kpi"><span>CM</span><strong id="kpiCm" class="positive">$0</strong><small id="kpiMargin">0.0% margin</small></div>
+            <div class="kpi"><span>OFT</span><strong id="kpiOft">$0</strong><small>基础海运费</small></div>
+            <div class="kpi"><span>附加费</span><strong id="kpiSurcharge">$0</strong><small>默认勾选项</small></div>
+            <div class="kpi"><span>All-in OFT</span><strong id="kpiAllIn">$0</strong><small>OFT + 附加费</small></div>
+            <div class="kpi"><span>变动成本</span><strong id="kpiCost">$0</strong><small>成本 + 佣金</small></div>
+            <div class="kpi cm-kpi"><span>CM</span><strong id="kpiCm" class="positive">$0</strong><small id="kpiMargin">0.0% 毛利率</small></div>
           </div>
         </div>
         <div class="detail-grid">
           <div class="detail-panel">
-            <div class="detail-head"><h3>Revenue Lines</h3><strong id="revenueTotal">$0</strong></div>
-            <div class="table-shell"><table><thead><tr><th>Charge</th><th>Basis</th><th>Currency</th><th>Amount</th></tr></thead><tbody id="revenueBody"></tbody></table></div>
+            <div class="detail-head"><h3>收入明细</h3><strong id="revenueTotal">$0</strong></div>
+            <div class="table-shell"><table><thead><tr><th>费用项</th><th>匹配依据</th><th>币种</th><th>金额</th></tr></thead><tbody id="revenueBody"></tbody></table></div>
           </div>
           <div class="detail-panel">
-            <div class="detail-head"><h3>Cost Lines</h3><strong id="costTotal">$0</strong></div>
-            <div class="table-shell"><table><thead><tr><th>Component</th><th>Match</th><th>Currency</th><th>Amount</th></tr></thead><tbody id="costBody"></tbody></table></div>
+            <div class="detail-head"><h3>成本明细</h3><strong id="costTotal">$0</strong></div>
+            <div class="table-shell"><table><thead><tr><th>成本项</th><th>匹配说明</th><th>币种</th><th>金额</th></tr></thead><tbody id="costBody"></tbody></table></div>
           </div>
         </div>
       </section>
@@ -206,24 +206,24 @@
       <section class="panel hidden" data-panel="surcharge">
         <div class="maintenance-grid">
           <div class="panel">
-            <div class="panel-head"><div><h2>Surcharge Maintenance</h2><p>Manual rows are saved locally; Excel rows come from the imported files.</p></div></div>
+            <div class="panel-head"><div><h2>附加费维护</h2><p>手工行会保存到当前浏览器；Excel 行来自导入文件。</p></div></div>
             <form class="form-grid" data-form="surcharge">
               <label><span>Trade</span><select name="tradeCode"><option>LH</option><option>SH</option><option>TWN</option><option>WAT</option><option>AEU</option></select></label>
               <label><span>Scope</span><input name="scope" value="MANUAL" /></label>
-              <label><span>Charge Code</span><input name="chargeCode" required /></label>
+              <label><span>费用代码</span><input name="chargeCode" required /></label>
               <label><span>Unit</span><select name="unit"><option>20GP</option><option>40HC</option><option>40RH</option><option>BOX</option><option>BILL</option></select></label>
               <label><span>POR</span><input name="por" /></label><label><span>POL</span><input name="pol" /></label>
               <label><span>POD</span><input name="pod" /></label><label><span>DEL</span><input name="del" /></label>
-              <label><span>Currency</span><input name="currency" value="USD" /></label>
-              <label><span>Unit Rate</span><input name="unitRate" type="number" required /></label>
-              <label><span>Default Selected</span><select name="defaultSelected"><option value="true">Yes</option><option value="false">No</option></select></label>
-              <label><span>Include in CM</span><select name="includeInCmDefault"><option value="true">Yes</option><option value="false">No</option></select></label>
+              <label><span>币种</span><input name="currency" value="USD" /></label>
+              <label><span>单价</span><input name="unitRate" type="number" required /></label>
+              <label><span>默认选中</span><select name="defaultSelected"><option value="true">是</option><option value="false">否</option></select></label>
+              <label><span>计入 CM</span><select name="includeInCmDefault"><option value="true">是</option><option value="false">否</option></select></label>
             </form>
-            <div class="actions"><button class="primary" data-save="surcharge">Save surcharge</button><button class="danger hidden" data-delete="surcharge">Delete row</button><button class="ghost" data-clear="surcharge">Clear</button></div>
+            <div class="actions"><button class="primary" data-save="surcharge">保存附加费</button><button class="danger hidden" data-delete="surcharge">删除当前行</button><button class="ghost" data-clear="surcharge">清空</button></div>
           </div>
           <div class="panel">
-            <div class="section-head"><div><h2>Surcharge Rows</h2><p>Search by trade, charge or port.</p></div><div class="inline-tools"><select data-filter-source="surcharge"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="surcharge" placeholder="Search surcharge" /></div></div>
-            <div class="table-shell tall"><table><thead><tr><th>Charge</th><th>Route</th><th>Unit</th><th>Rate</th><th>Default</th><th>Source</th></tr></thead><tbody id="surchargeRows"></tbody></table></div>
+            <div class="section-head"><div><h2>附加费明细</h2><p>按 trade、费用代码或港口搜索。</p></div><div class="inline-tools"><select data-filter-source="surcharge"><option value="all">全部</option><option value="manual">手工</option><option value="excel">Excel</option></select><input data-search="surcharge" placeholder="搜索附加费" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>费用项</th><th>航线</th><th>单位</th><th>费率</th><th>默认</th><th>来源</th></tr></thead><tbody id="surchargeRows"></tbody></table></div>
           </div>
         </div>
       </section>
@@ -231,20 +231,20 @@
       <section class="panel hidden" data-panel="terminal">
         <div class="maintenance-grid">
           <div class="panel">
-            <div class="panel-head"><div><h2>Terminal Cost Maintenance</h2><p>THC / TALLY, LOCAL / TS, import and export rates.</p></div></div>
+            <div class="panel-head"><div><h2>码头费维护</h2><p>维护 THC / TALLY、LOCAL / TS、进口和出口费率。</p></div></div>
             <form class="form-grid" data-form="terminal">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>Lane</span><input name="lane" value="ALL" /></label>
-              <label><span>Import / Export</span><select name="importExport"><option>EXPORT</option><option>IMPORT</option></select></label>
-              <label><span>Cost Type</span><select name="costType"><option>THC</option><option>TALLY</option></select></label>
-              <label><span>Port Code</span><input name="portCode" required /></label><label><span>LOCAL / TS</span><select name="localTs"><option>LOCAL</option><option>TS</option></select></label>
-              <label><span>Currency</span><input name="currency" value="USD" /></label><label><span>Type Note</span><input name="typeNote" /></label>
+              <label><span>月份</span><input name="monthCode" value="ALL" /></label><label><span>航线</span><input name="lane" value="ALL" /></label>
+              <label><span>进 / 出口</span><select name="importExport"><option>EXPORT</option><option>IMPORT</option></select></label>
+              <label><span>成本类型</span><select name="costType"><option>THC</option><option>TALLY</option></select></label>
+              <label><span>港口代码</span><input name="portCode" required /></label><label><span>LOCAL / TS</span><select name="localTs"><option>LOCAL</option><option>TS</option></select></label>
+              <label><span>币种</span><input name="currency" value="USD" /></label><label><span>类型备注</span><input name="typeNote" /></label>
               <label><span>20GP</span><input name="rate20gp" type="number" /></label><label><span>40HC</span><input name="rate40hc" type="number" /></label><label><span>40RH</span><input name="rate40rh" type="number" /></label>
             </form>
-            <div class="actions"><button class="primary" data-save="terminal">Save terminal</button><button class="danger hidden" data-delete="terminal">Delete row</button><button class="ghost" data-clear="terminal">Clear</button></div>
+            <div class="actions"><button class="primary" data-save="terminal">保存码头费</button><button class="danger hidden" data-delete="terminal">删除当前行</button><button class="ghost" data-clear="terminal">清空</button></div>
           </div>
           <div class="panel">
-            <div class="section-head"><div><h2>Terminal Rows</h2><p>Search by port, lane or currency.</p></div><div class="inline-tools"><select data-filter-source="terminal"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="terminal" placeholder="Search terminal" /></div></div>
-            <div class="table-shell tall"><table><thead><tr><th>Port</th><th>Type</th><th>Currency</th><th>20GP</th><th>40HC</th><th>40RH</th><th>Source</th></tr></thead><tbody id="terminalRows"></tbody></table></div>
+            <div class="section-head"><div><h2>码头费明细</h2><p>按港口、航线或币种搜索。</p></div><div class="inline-tools"><select data-filter-source="terminal"><option value="all">全部</option><option value="manual">手工</option><option value="excel">Excel</option></select><input data-search="terminal" placeholder="搜索码头费" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>港口</th><th>类型</th><th>币种</th><th>20GP</th><th>40HC</th><th>40RH</th><th>来源</th></tr></thead><tbody id="terminalRows"></tbody></table></div>
           </div>
         </div>
       </section>
@@ -252,18 +252,18 @@
       <section class="panel hidden" data-panel="feeder">
         <div class="maintenance-grid">
           <div class="panel">
-            <div class="panel-head"><div><h2>Feeder Cost Maintenance</h2><p>Rates by from/to port, transport mode, container and term.</p></div></div>
+            <div class="panel-head"><div><h2>拖驳费维护</h2><p>按起运港、目的港、运输方式、箱型和 term 维护费率。</p></div></div>
             <form class="form-grid" data-form="feeder">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>From Port</span><input name="fromPort" required /></label>
-              <label><span>To Port</span><input name="toPort" required /></label><label><span>Transport</span><select name="transportType"><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
-              <label><span>Container</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label><label><span>Currency</span><input name="currency" value="USD" /></label>
-              <label><span>Rate</span><input name="unitRate" type="number" required /></label><label><span>Term</span><select name="term"><option value="">Not set</option><option>CYCY</option><option>FIO</option><option>FICY</option><option>CYFO</option></select></label>
+              <label><span>月份</span><input name="monthCode" value="ALL" /></label><label><span>起点港</span><input name="fromPort" required /></label>
+              <label><span>终点港</span><input name="toPort" required /></label><label><span>运输方式</span><select name="transportType"><option>TRUCK</option><option>WATER</option><option>RAIL</option></select></label>
+              <label><span>箱型</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label><label><span>币种</span><input name="currency" value="USD" /></label>
+              <label><span>费率</span><input name="unitRate" type="number" required /></label><label><span>Term</span><select name="term"><option value="">未设置</option><option>CYCY</option><option>FIO</option><option>FICY</option><option>CYFO</option></select></label>
             </form>
-            <div class="actions"><button class="primary" data-save="feeder">Save feeder</button><button class="danger hidden" data-delete="feeder">Delete row</button><button class="ghost" data-clear="feeder">Clear</button></div>
+            <div class="actions"><button class="primary" data-save="feeder">保存拖驳费</button><button class="danger hidden" data-delete="feeder">删除当前行</button><button class="ghost" data-clear="feeder">清空</button></div>
           </div>
           <div class="panel">
-            <div class="section-head"><div><h2>Feeder Rows</h2><p>Search by port, term or transport.</p></div><div class="inline-tools"><select data-filter-source="feeder"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="feeder" placeholder="Search feeder" /></div></div>
-            <div class="table-shell tall"><table><thead><tr><th>Route</th><th>Transport</th><th>Container</th><th>Rate</th><th>Term</th><th>Source</th></tr></thead><tbody id="feederRows"></tbody></table></div>
+            <div class="section-head"><div><h2>拖驳费明细</h2><p>按港口、term 或运输方式搜索。</p></div><div class="inline-tools"><select data-filter-source="feeder"><option value="all">全部</option><option value="manual">手工</option><option value="excel">Excel</option></select><input data-search="feeder" placeholder="搜索拖驳费" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>路径</th><th>运输方式</th><th>箱型</th><th>费率</th><th>Term</th><th>来源</th></tr></thead><tbody id="feederRows"></tbody></table></div>
           </div>
         </div>
       </section>
@@ -271,17 +271,17 @@
       <section class="panel hidden" data-panel="container">
         <div class="maintenance-grid">
           <div class="panel">
-            <div class="panel-head"><div><h2>Container Cost Maintenance</h2><p>Average CBP cost by POL, POD and container.</p></div></div>
+            <div class="panel-head"><div><h2>Container Cost维护</h2><p>按 POL、POD 和箱型维护 CBP 平均成本。</p></div></div>
             <form class="form-grid" data-form="container">
-              <label><span>Month</span><input name="monthCode" value="ALL" /></label><label><span>Container</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
+              <label><span>月份</span><input name="monthCode" value="ALL" /></label><label><span>箱型</span><select name="containerType"><option>20GP</option><option>40HC</option><option>40RH</option></select></label>
               <label><span>POR</span><input name="por" /></label><label><span>POL</span><input name="pol" required /></label><label><span>POD</span><input name="pod" required /></label><label><span>DEL</span><input name="del" /></label>
-              <label><span>CBP Total Cost</span><input name="cbpTotalCost" type="number" /></label><label><span>CBP Average Cost</span><input name="cbpAverageCost" type="number" required /></label><label><span>Currency</span><input name="currency" value="USD" /></label>
+              <label><span>CBP 总成本</span><input name="cbpTotalCost" type="number" /></label><label><span>CBP 平均成本</span><input name="cbpAverageCost" type="number" required /></label><label><span>币种</span><input name="currency" value="USD" /></label>
             </form>
-            <div class="actions"><button class="primary" data-save="container">Save container cost</button><button class="danger hidden" data-delete="container">Delete row</button><button class="ghost" data-clear="container">Clear</button></div>
+            <div class="actions"><button class="primary" data-save="container">保存 Container Cost</button><button class="danger hidden" data-delete="container">删除当前行</button><button class="ghost" data-clear="container">清空</button></div>
           </div>
           <div class="panel">
-            <div class="section-head"><div><h2>Container Cost Rows</h2><p>Search by POL, POD or container.</p></div><div class="inline-tools"><select data-filter-source="container"><option value="all">All</option><option value="manual">Manual</option><option value="excel">Excel</option></select><input data-search="container" placeholder="Search container" /></div></div>
-            <div class="table-shell tall"><table><thead><tr><th>Route</th><th>Container</th><th>Container Cost</th><th>Month</th><th>Source</th></tr></thead><tbody id="containerRows"></tbody></table></div>
+            <div class="section-head"><div><h2>Container Cost明细</h2><p>按 POL、POD 或箱型搜索。</p></div><div class="inline-tools"><select data-filter-source="container"><option value="all">全部</option><option value="manual">手工</option><option value="excel">Excel</option></select><input data-search="container" placeholder="搜索 Container Cost" /></div></div>
+            <div class="table-shell tall"><table><thead><tr><th>路径</th><th>箱型</th><th>Container Cost</th><th>月份</th><th>来源</th></tr></thead><tbody id="containerRows"></tbody></table></div>
           </div>
         </div>
       </section>
@@ -292,7 +292,7 @@
         const JS_CHUNKS = Array.from({ length: 6 }, (_, index) => `./cm-js/part-${String(index).padStart(2, "0")}.txt`);
         const responses = await Promise.all(JS_CHUNKS.map((url) => fetch(url, { cache: "no-store" })));
         const failed = responses.find((response) => !response.ok);
-        if (failed) throw new Error(`Application file failed to load: ${failed.status}`);
+        if (failed) throw new Error(`应用脚本加载失败：${failed.status}`);
         const encoded = (await Promise.all(responses.map((response) => response.text()))).join("").trim();
         const binary = atob(encoded);
         const bytes = new Uint8Array(binary.length);
@@ -304,7 +304,7 @@
       })().catch((error) => {
         const banner = document.getElementById("messageBanner");
         banner.classList.add("show");
-        banner.textContent = error instanceof Error ? error.message : "Application failed to load.";
+        banner.textContent = error instanceof Error ? error.message : "应用加载失败。";
       });
     </script>
   </body>

@@ -69,13 +69,13 @@ function convertToUsd(amount, currency) {
 
 function routeText(row) {
   const ports = [row.por, row.pol, row.pod, row.del].map(upper).filter(Boolean);
-  return ports.length ? ports.join(" -> ") : "ALL ROUTE";
+  return ports.length ? ports.join(" -> ") : "全部航线";
 }
 
 function sourceBadge(row) {
   const manual = row.sourceFile === "MANUAL";
-  const source = manual ? row.sourceSheet || "Manual" : `${row.sourceFile} / ${row.sourceSheet || ""}`;
-  return `<div class="source-cell"><span class="source-badge ${manual ? "manual" : "excel"}">${manual ? "Manual" : "Excel"}</span><small>${html(source)}</small></div>`;
+  const source = manual ? row.sourceSheet || "手工维护" : `${row.sourceFile} / ${row.sourceSheet || ""}`;
+  return `<div class="source-cell"><span class="source-badge ${manual ? "manual" : "excel"}">${manual ? "手工" : "Excel"}</span><small>${html(source)}</small></div>`;
 }
 
 function showMessage(message) {
@@ -156,7 +156,7 @@ function readForm(collection) {
     row[field] = value;
   });
   row.sourceFile = "MANUAL";
-  row.sourceSheet = "Browser local";
+  row.sourceSheet = "浏览器本地";
   return row;
 }
 
@@ -215,10 +215,10 @@ function visibleRows(collection) {
 
 function renderStats() {
   const summary = appData.maintenanceSummary;
-  document.getElementById("statSurcharge").textContent = `${formatInteger(summary.surchargeCount)} rows`;
-  document.getElementById("statTerminal").textContent = `${formatInteger(summary.terminalCount)} rows`;
-  document.getElementById("statFeeder").textContent = `${formatInteger(summary.feederCount)} rows`;
-  document.getElementById("statContainer").textContent = `${formatInteger(summary.containerCount)} rows`;
+  document.getElementById("statSurcharge").textContent = `${formatInteger(summary.surchargeCount)} 行`;
+  document.getElementById("statTerminal").textContent = `${formatInteger(summary.terminalCount)} 行`;
+  document.getElementById("statFeeder").textContent = `${formatInteger(summary.feederCount)} 行`;
+  document.getElementById("statContainer").textContent = `${formatInteger(summary.containerCount)} 行`;
 }
 
 function renderSurchargeRows() {
@@ -228,7 +228,7 @@ function renderSurchargeRows() {
       <td>${html(routeText(row))}</td>
       <td>${html(row.unit)}</td>
       <td>${html(row.currency)} ${formatInteger(row.unitRate)}</td>
-      <td>${row.defaultSelected ? "Yes" : "No"}</td>
+      <td>${row.defaultSelected ? "是" : "否"}</td>
       <td>${sourceBadge(row)}</td>
     </tr>
   `).join("") || `<tr><td colspan="6"><div class="empty-state">暂无匹配数据</div></td></tr>`;
@@ -606,11 +606,11 @@ function buildSimulation() {
     const agentCommissionUsd = allInOftUsd * 0.03;
     costLines.push({
       component: "AGENT_COMMISSION",
-      label: "Agent Commission 3%",
+      label: "代理佣金 3%",
       currency: "USD",
       amount: agentCommissionUsd,
       amountUsd: agentCommissionUsd,
-      details: "按总货物收入的 3% 计算",
+      details: "按总收入的 3% 计算",
     });
     const variableCostUsd = costLines.reduce((sum, line) => sum + line.amountUsd, 0);
     return {
@@ -648,20 +648,20 @@ function renderSimulation() {
   const cmNode = document.getElementById("kpiCm");
   cmNode.textContent = money(result.totals.cmUsd);
   cmNode.className = result.totals.cmUsd >= 0 ? "positive" : "negative";
-  document.getElementById("kpiMargin").textContent = `${margin.toFixed(1)}% margin`;
+  document.getElementById("kpiMargin").textContent = `${margin.toFixed(1)}% 毛利率`;
   document.getElementById("revenueTotal").textContent = money(result.totals.allInOftUsd);
   document.getElementById("costTotal").textContent = money(result.totals.variableCostUsd);
 
   const revenueRows = [
     `<tr><td>OFT</td><td>${html(`${result.resolved.tradeCode} / ${result.resolved.containerType}`)}</td><td>${html(result.resolved.oftCurrency)}</td><td>${money(result.resolved.oftAmount, result.resolved.oftCurrency)}</td></tr>`,
     ...result.revenueLines.map((row) => `
-      <tr><td>${html(row.label)}</td><td>${html(row.matchBasis)}${row.selected ? "" : " / not selected"}</td><td>${html(row.currency)}</td><td>${money(row.originalAmount, row.currency)}</td></tr>
+      <tr><td>${html(row.label)}</td><td>${html(row.matchBasis)}${row.selected ? "" : " / 未选中"}</td><td>${html(row.currency)}</td><td>${money(row.originalAmount, row.currency)}</td></tr>
     `),
   ];
   document.getElementById("revenueBody").innerHTML = revenueRows.join("");
 
   const warningRows = result.warnings.map((warning) => `
-    <tr class="warning-row"><td>WARNING</td><td>${html(warning.target || "")}</td><td>-</td><td>${html(warning.message)}</td></tr>
+    <tr class="warning-row"><td>提醒</td><td>${html(warning.target || "")}</td><td>-</td><td>${html(warning.message)}</td></tr>
   `);
   const costRows = result.costLines.map((row) => `
     <tr><td>${html(row.label || row.component)}</td><td>${html(row.details)}</td><td>${html(row.currency)}</td><td>${money(row.amount, row.currency)}</td></tr>
