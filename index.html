@@ -1,14 +1,640 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CM Calculator</title>
-    <script type="module" crossorigin src="/assets/index-BihI5ZtZ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DobrMq6t.css">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eef3f5;
+        --panel: rgba(255, 255, 255, 0.9);
+        --panel-strong: #ffffff;
+        --line: rgba(18, 52, 59, 0.1);
+        --text: #12343b;
+        --muted: #5f7b81;
+        --primary: #0f7276;
+        --primary-strong: #0a565a;
+        --accent: #f18f4b;
+        --danger: #c84a2f;
+        --shadow: 0 18px 40px rgba(18, 52, 59, 0.08);
+        font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(241, 143, 75, 0.1), transparent 24%),
+          linear-gradient(180deg, #f6f9fa, var(--bg));
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 24px 20px 40px;
+      }
+
+      .hero,
+      .panel,
+      .summary-card,
+      .line-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 18px;
+        padding: 24px;
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at top right, rgba(241, 143, 75, 0.24), transparent 28%),
+          linear-gradient(135deg, rgba(9, 66, 82, 0.98), rgba(14, 102, 110, 0.95));
+        color: #f7fbfb;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: rgba(247, 251, 251, 0.72);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.02;
+      }
+
+      .hero p {
+        margin: 10px 0 0;
+        line-height: 1.6;
+        color: rgba(247, 251, 251, 0.84);
+      }
+
+      .hero-stats {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .hero-stat {
+        border-radius: 16px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .hero-stat span {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(247, 251, 251, 0.72);
+      }
+
+      .hero-stat strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 18px;
+        color: #ffffff;
+      }
+
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin: 16px 0;
+        flex-wrap: wrap;
+      }
+
+      .toolbar-note {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .toolbar-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(15, 114, 118, 0.08);
+        color: var(--primary-strong);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .panel {
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .panel h2,
+      .panel h3 {
+        margin: 0;
+      }
+
+      .panel-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+
+      .panel-head p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+      }
+
+      label span {
+        font-size: 12px;
+        font-weight: 700;
+        color: #35545a;
+      }
+
+      input,
+      select {
+        width: 100%;
+        border: 1px solid rgba(18, 52, 59, 0.14);
+        border-radius: 12px;
+        padding: 11px 12px;
+        font: inherit;
+        background: var(--panel-strong);
+        color: var(--text);
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: rgba(15, 114, 118, 0.65);
+        box-shadow: 0 0 0 3px rgba(15, 114, 118, 0.12);
+      }
+
+      .wide {
+        grid-column: 1 / -1;
+      }
+
+      .button-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 11px 16px;
+        font: inherit;
+        cursor: pointer;
+        transition: transform 120ms ease, opacity 120ms ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+        color: #f7ffff;
+      }
+
+      .ghost {
+        background: rgba(18, 52, 59, 0.08);
+        color: var(--text);
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .summary-card {
+        border-radius: 16px;
+        padding: 14px 16px;
+      }
+
+      .summary-card span {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .summary-card strong {
+        display: block;
+        margin-top: 8px;
+        font-size: 22px;
+        color: var(--text);
+      }
+
+      .summary-card small {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .summary-card.cm {
+        background: linear-gradient(135deg, rgba(10, 86, 90, 0.96), rgba(15, 114, 118, 0.92));
+        color: #ffffff;
+        border-color: rgba(15, 114, 118, 0.28);
+      }
+
+      .summary-card.cm span,
+      .summary-card.cm small {
+        color: rgba(240, 250, 250, 0.78);
+      }
+
+      .summary-card.cm strong.positive {
+        color: #6dffb2;
+      }
+
+      .summary-card.cm strong.negative {
+        color: #ff9d89;
+      }
+
+      .lines {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .line-card {
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .line-card h3 {
+        margin-bottom: 12px;
+        font-size: 16px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 10px 8px;
+        border-bottom: 1px solid rgba(18, 52, 59, 0.08);
+        font-size: 14px;
+      }
+
+      th {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .footnote {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 1024px) {
+        .hero,
+        .layout,
+        .summary,
+        .lines {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          padding: 16px 14px 28px;
+        }
+
+        .hero,
+        .panel,
+        .summary-card,
+        .line-card {
+          border-radius: 18px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Static Calculator</p>
+          <h1>CM Calculator</h1>
+          <p>
+            这是一个纯静态发布版计算器。后续我们只维护这个网页文件，就可以持续更新 GitHub Pages，
+            不需要再依赖本地服务或后端部署。
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span>发布方式</span>
+            <strong>GitHub Pages</strong>
+          </div>
+          <div class="hero-stat">
+            <span>维护方式</span>
+            <strong>单文件静态更新</strong>
+          </div>
+        </div>
+      </section>
+
+      <div class="toolbar">
+        <div class="toolbar-note">后续如果你要改版，我会直接改这个页面并同步到线上。</div>
+        <div class="toolbar-badge">当前模式：纯静态网页</div>
+      </div>
+
+      <section class="layout">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>输入区</h2>
+              <p>输入收入和成本项，页面会实时计算 Revenue、Variable Cost、CM 和 Margin。</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <label>
+              <span>Trade</span>
+              <select id="trade">
+                <option>LH</option>
+                <option>SH</option>
+                <option>TWN</option>
+                <option>WAT</option>
+                <option>AEU</option>
+              </select>
+            </label>
+            <label>
+              <span>Container</span>
+              <select id="containerType">
+                <option>20GP</option>
+                <option>40HC</option>
+                <option>40RH</option>
+              </select>
+            </label>
+            <label>
+              <span>POL</span>
+              <input id="pol" value="SHA" />
+            </label>
+            <label>
+              <span>POD</span>
+              <input id="pod" value="LAX" />
+            </label>
+            <label>
+              <span>OFT</span>
+              <input id="oft" type="number" value="1350" />
+            </label>
+            <label>
+              <span>Surcharge</span>
+              <input id="surcharge" type="number" value="420" />
+            </label>
+            <label>
+              <span>Terminal Handling</span>
+              <input id="terminal" type="number" value="180" />
+            </label>
+            <label>
+              <span>Feeder / Trucking</span>
+              <input id="feeder" type="number" value="230" />
+            </label>
+            <label>
+              <span>Agent Commission</span>
+              <input id="commission" type="number" value="85" />
+            </label>
+            <label>
+              <span>Container Cost</span>
+              <input id="containerCost" type="number" value="70" />
+            </label>
+            <label class="wide">
+              <span>备注</span>
+              <input id="note" value="静态发布版，适合先给大家看页面和算逻辑。" />
+            </label>
+          </div>
+
+          <div class="button-row">
+            <button class="primary" id="calculate">重新计算</button>
+            <button class="ghost" id="reset">恢复默认值</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="summary">
+            <div class="summary-card">
+              <span>Revenue</span>
+              <strong id="revenueValue">$0</strong>
+              <small>OFT + Surcharge</small>
+            </div>
+            <div class="summary-card">
+              <span>Variable Cost</span>
+              <strong id="costValue">$0</strong>
+              <small>所有成本项合计</small>
+            </div>
+            <div class="summary-card">
+              <span>Margin</span>
+              <strong id="marginValue">0%</strong>
+              <small>CM / Revenue</small>
+            </div>
+            <div class="summary-card cm">
+              <span>CM</span>
+              <strong id="cmValue" class="positive">$0</strong>
+              <small id="cmStatus">结果会随输入实时更新</small>
+            </div>
+          </div>
+
+          <div class="lines">
+            <div class="line-card">
+              <h3>Revenue Breakdown</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>项目</th>
+                    <th>金额</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>OFT</td>
+                    <td id="oftLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td>Surcharge</td>
+                    <td id="surchargeLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Total Revenue</strong></td>
+                    <td id="revenueTotal"><strong>$0</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="line-card">
+              <h3>Cost Breakdown</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>项目</th>
+                    <th>金额</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Terminal Handling</td>
+                    <td id="terminalLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td>Feeder / Trucking</td>
+                    <td id="feederLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td>Agent Commission</td>
+                    <td id="commissionLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td>Container Cost</td>
+                    <td id="containerCostLine">$0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Total Cost</strong></td>
+                    <td id="costTotal"><strong>$0</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="footnote">
+            <strong>当前说明：</strong>
+            这是为 GitHub Pages 准备的纯静态版本。后面如果你要继续改样式、字段、计算逻辑或文案，
+            我可以直接在这个页面上更新并同步，效率会比之前高很多。
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const defaults = {
+        trade: "LH",
+        containerType: "20GP",
+        pol: "SHA",
+        pod: "LAX",
+        oft: 1350,
+        surcharge: 420,
+        terminal: 180,
+        feeder: 230,
+        commission: 85,
+        containerCost: 70,
+        note: "静态发布版，适合先给大家看页面和算逻辑。",
+      };
+
+      const formatCurrency = (value) =>
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(value);
+
+      const getNumber = (id) => {
+        const node = document.getElementById(id);
+        const value = Number(node.value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      function render() {
+        const oft = getNumber("oft");
+        const surcharge = getNumber("surcharge");
+        const terminal = getNumber("terminal");
+        const feeder = getNumber("feeder");
+        const commission = getNumber("commission");
+        const containerCost = getNumber("containerCost");
+
+        const revenue = oft + surcharge;
+        const variableCost = terminal + feeder + commission + containerCost;
+        const cm = revenue - variableCost;
+        const margin = revenue === 0 ? 0 : (cm / revenue) * 100;
+
+        document.getElementById("oftLine").textContent = formatCurrency(oft);
+        document.getElementById("surchargeLine").textContent = formatCurrency(surcharge);
+        document.getElementById("terminalLine").textContent = formatCurrency(terminal);
+        document.getElementById("feederLine").textContent = formatCurrency(feeder);
+        document.getElementById("commissionLine").textContent = formatCurrency(commission);
+        document.getElementById("containerCostLine").textContent = formatCurrency(containerCost);
+
+        document.getElementById("revenueValue").textContent = formatCurrency(revenue);
+        document.getElementById("costValue").textContent = formatCurrency(variableCost);
+        document.getElementById("marginValue").textContent = `${margin.toFixed(1)}%`;
+        document.getElementById("revenueTotal").textContent = formatCurrency(revenue);
+        document.getElementById("costTotal").textContent = formatCurrency(variableCost);
+
+        const cmNode = document.getElementById("cmValue");
+        cmNode.textContent = formatCurrency(cm);
+        cmNode.className = cm >= 0 ? "positive" : "negative";
+        document.getElementById("cmStatus").textContent =
+          cm >= 0 ? "当前结果为正贡献" : "当前结果为负贡献";
+      }
+
+      function resetForm() {
+        Object.entries(defaults).forEach(([key, value]) => {
+          const node = document.getElementById(key);
+          if (node) {
+            node.value = value;
+          }
+        });
+        render();
+      }
+
+      document.querySelectorAll("input, select").forEach((element) => {
+        element.addEventListener("input", render);
+      });
+
+      document.getElementById("calculate").addEventListener("click", render);
+      document.getElementById("reset").addEventListener("click", resetForm);
+
+      render();
+    </script>
   </body>
 </html>
