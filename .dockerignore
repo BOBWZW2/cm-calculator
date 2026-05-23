@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+dist
+**/dist
+.tools
+codex_context
+migration-tools
+output
+*.log
+*.pid
+cm-calculator-web/data/*.sqlite
+cm-calculator-web/data/*.sqlite-shm
+cm-calculator-web/data/*.sqlite-wal
+!cm-calculator-web/data/manual-seed.json
