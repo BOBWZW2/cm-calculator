@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "updatedAt": null,
+  "updatedBy": "CM Calculator",
+  "exchangeRates": null,
+  "tables": {
+    "surcharges": [],
+    "terminals": [],
+    "feeders": [],
+    "containerCosts": []
+  },
+  "deletedKeys": {
+    "surcharges": [],
+    "terminals": [],
+    "feeders": [],
+    "containerCosts": []
+  }
+}
