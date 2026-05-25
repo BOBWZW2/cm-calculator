@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-05-24T14:24:53.389Z",
+  "updatedAt": "2026-05-25T03:53:05.971Z",
   "updatedBy": "CM Calculator",
   "exchangeRates": {
     "baseCurrency": "USD",
@@ -401,7 +401,36 @@
         "sourceSheet": "WEB"
       }
     ],
-    "feeders": [],
+    "feeders": [
+      {
+        "id": 4482,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDJKT",
+        "transportType": "WATER",
+        "containerType": "20GP",
+        "currency": "USD",
+        "unitRate": 175,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-05-25T03:49:55.162Z"
+      },
+      {
+        "id": 4483,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDJKT",
+        "transportType": "WATER",
+        "containerType": "40HC",
+        "currency": "USD",
+        "unitRate": 330,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-05-25T03:50:02.277Z"
+      }
+    ],
     "containerCosts": []
   },
   "deletedKeys": {
