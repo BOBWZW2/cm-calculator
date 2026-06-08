@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-06-08T07:43:06.120Z",
+  "updatedAt": "2026-06-08T07:59:22.791Z",
   "updatedBy": "CM Calculator",
   "exchangeRates": {
     "baseCurrency": "USD",
@@ -969,6 +969,34 @@
         "sourceFile": "MANUAL",
         "sourceSheet": "WEB",
         "inputAt": "2026-05-25T03:50:02.277Z"
+      },
+      {
+        "id": 4789,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "VNSGN",
+        "transportType": "WATER",
+        "containerType": "20GP",
+        "currency": "USD",
+        "unitRate": 140,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-08T07:51:34.071Z"
+      },
+      {
+        "id": 4790,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "VNSGN",
+        "transportType": "TRUCK",
+        "containerType": "40HC",
+        "currency": "USD",
+        "unitRate": 260,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-08T07:51:49.155Z"
       }
     ],
     "containerCosts": []
