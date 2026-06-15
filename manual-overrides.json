@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-06-15T02:13:17.905Z",
+  "updatedAt": "2026-06-15T02:15:13.752Z",
   "updatedBy": "CM Calculator",
   "exchangeRates": {
     "baseCurrency": "USD",
@@ -960,6 +960,62 @@
       }
     ],
     "feeders": [
+      {
+        "id": 4480,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDBLW",
+        "transportType": "WATER",
+        "containerType": "20GP",
+        "currency": "USD",
+        "unitRate": 170,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-15T02:14:38.040Z"
+      },
+      {
+        "id": 4481,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDBLW",
+        "transportType": "WATER",
+        "containerType": "40HC",
+        "currency": "USD",
+        "unitRate": 320,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-15T02:14:43.927Z"
+      },
+      {
+        "id": 4486,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDSUB",
+        "transportType": "WATER",
+        "containerType": "20GP",
+        "currency": "USD",
+        "unitRate": 190,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-15T02:14:56.009Z"
+      },
+      {
+        "id": 4487,
+        "monthCode": "ALL",
+        "fromPort": "MYPKG",
+        "toPort": "IDSUB",
+        "transportType": "WATER",
+        "containerType": "40HC",
+        "currency": "USD",
+        "unitRate": 380,
+        "term": "FICY",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-15T02:15:01.400Z"
+      },
       {
         "id": 4482,
         "monthCode": "ALL",
