@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-06-08T07:59:22.791Z",
+  "updatedAt": "2026-06-15T02:13:17.905Z",
   "updatedBy": "CM Calculator",
   "exchangeRates": {
     "baseCurrency": "USD",
@@ -855,6 +855,24 @@
       }
     ],
     "terminals": [
+      {
+        "id": 3693,
+        "monthCode": "ALL",
+        "lane": "ALL",
+        "importExport": "IMPORT",
+        "costType": "THC",
+        "ladenEmpty": "LADEN",
+        "portCode": "IDBLW",
+        "localTs": "LOCAL",
+        "currency": "USD",
+        "typeNote": "",
+        "rate20gp": 90,
+        "rate40hc": 135,
+        "rate40rh": 157,
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-15T02:13:08.585Z"
+      },
       {
         "id": 1536,
         "monthCode": "ALL",
