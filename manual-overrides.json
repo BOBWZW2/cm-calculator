@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-06-16T03:41:54.575Z",
+  "updatedAt": "2026-06-16T10:37:57.858Z",
   "updatedBy": "CM Calculator",
   "exchangeRates": {
     "baseCurrency": "USD",
@@ -978,6 +978,34 @@
       }
     ],
     "feeders": [
+      {
+        "id": 4768,
+        "monthCode": "ALL",
+        "fromPort": "CNNAS",
+        "toPort": "CNSWA",
+        "transportType": "WATER",
+        "containerType": "20GP",
+        "currency": "HKD",
+        "unitRate": 522.5,
+        "term": "FIO",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-16T10:37:51.394Z"
+      },
+      {
+        "id": 4769,
+        "monthCode": "ALL",
+        "fromPort": "CNNAS",
+        "toPort": "CNSWA",
+        "transportType": "WATER",
+        "containerType": "40HC",
+        "currency": "HKD",
+        "unitRate": 874,
+        "term": "FIO",
+        "sourceFile": "MANUAL",
+        "sourceSheet": "WEB",
+        "inputAt": "2026-06-16T10:37:54.708Z"
+      },
       {
         "id": 4480,
         "monthCode": "ALL",
